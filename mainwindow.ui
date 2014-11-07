@@ -84,8 +84,15 @@
     <addaction name="actionZoom_in"/>
     <addaction name="actionZoom_out"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionSet_color"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuEdit"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -152,6 +159,11 @@
     <string>-</string>
    </property>
   </action>
+  <action name="actionSet_color">
+   <property name="text">
+    <string>Set color</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -167,6 +179,7 @@
     <slot>down()</slot>
     <slot>zoom_in()</slot>
     <slot>zoom_out()</slot>
+    <slot>set_color()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -305,6 +318,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>zoom_out()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_color</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_color()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

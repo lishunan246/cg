@@ -1,5 +1,6 @@
 #include "glwidget.h"
 #include <GL/glu.h>
+#include <QInputDialog>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -9,6 +10,10 @@ GLWidget::GLWidget(QWidget *parent) :
     rotate=0;
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
+    c[0]=1;
+    c[1]=0.9;
+    c[2]=0;
+    c[3]=1;
 }
 
 void GLWidget::left()
@@ -59,6 +64,27 @@ void GLWidget::zoom_out()
     updateGL();
 }
 
+void GLWidget::set_color()
+{
+    bool ok;
+    double temp[4];
+
+    for(int i=0;i<4;i++)
+    {
+        double color = QInputDialog::getDouble(0, tr("Input color value"),
+                tr("Value:"), 1.00, 0, 1, 2, &ok);
+        if (ok)
+            temp[i]=color;
+        else
+            return;
+    }
+    for(int i=0;i<4;i++)
+    {
+        c[i]=(float)temp[i];
+    }
+    updateGL();
+}
+
 void GLWidget::initializeGL()
 {
     glClearColor(0.2,0.2,0.2,1);
@@ -82,7 +108,7 @@ void GLWidget::paintGL()
     glRotatef(rotate,1,1,1);
     rotate+=10;
 
-    GLfloat c[]={1,0.9,0,1};
+
 
     //glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,c);
     glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,c);

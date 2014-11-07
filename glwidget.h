@@ -18,6 +18,7 @@ public slots:
     void down();
     void zoom_in();
     void zoom_out();
+    void set_color();
 
 protected:
     void initializeGL();
@@ -29,6 +30,7 @@ private:
     double eye[3];
     double thing[3];
     int rotate;
+    float c[4];
 };
 
 #endif // GLWIDGET_H
