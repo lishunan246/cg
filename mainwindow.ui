@@ -73,7 +73,19 @@
     </property>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionMove_up"/>
+    <addaction name="actionMove_down"/>
+    <addaction name="actionMove_right"/>
+    <addaction name="actionMove_left"/>
+    <addaction name="actionZoom_in"/>
+    <addaction name="actionZoom_out"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuView"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -92,6 +104,54 @@
     <string>Esc</string>
    </property>
   </action>
+  <action name="actionMove_up">
+   <property name="text">
+    <string>Move up</string>
+   </property>
+   <property name="shortcut">
+    <string>Up</string>
+   </property>
+  </action>
+  <action name="actionMove_down">
+   <property name="text">
+    <string>Move down</string>
+   </property>
+   <property name="shortcut">
+    <string>Down</string>
+   </property>
+  </action>
+  <action name="actionMove_right">
+   <property name="text">
+    <string>Move right</string>
+   </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
+  </action>
+  <action name="actionMove_left">
+   <property name="text">
+    <string>Move left</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionZoom_in">
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+   <property name="shortcut">
+    <string>=</string>
+   </property>
+  </action>
+  <action name="actionZoom_out">
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -102,6 +162,11 @@
    <container>1</container>
    <slots>
     <slot>left()</slot>
+    <slot>up()</slot>
+    <slot>right()</slot>
+    <slot>down()</slot>
+    <slot>zoom_in()</slot>
+    <slot>zoom_out()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -143,11 +208,107 @@
    <sender>right</sender>
    <signal>clicked()</signal>
    <receiver>widget</receiver>
-   <slot>left()</slot>
+   <slot>right()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
      <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove_up</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>up()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove_down</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>down()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove_right</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>right()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove_left</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>left()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_in</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>zoom_in()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_out</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>zoom_out()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>197</x>

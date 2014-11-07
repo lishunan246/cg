@@ -13,8 +13,48 @@ GLWidget::GLWidget(QWidget *parent) :
 
 void GLWidget::left()
 {
+    eye[0]+=0.5;
+    thing[0]+=0.5;
+
+    updateGL();
+}
+
+void GLWidget::up()
+{
     eye[1]-=0.5;
     thing[1]-=0.5;
+
+    updateGL();
+}
+
+void GLWidget::right()
+{
+    eye[0]-=0.5;
+    thing[0]-=0.5;
+
+    updateGL();
+}
+
+void GLWidget::down()
+{
+    eye[1]+=0.5;
+    thing[1]+=0.5;
+
+    updateGL();
+}
+
+void GLWidget::zoom_in()
+{
+    eye[2]-=0.5;
+    thing[2]-=0.5;
+
+    updateGL();
+}
+
+void GLWidget::zoom_out()
+{
+    eye[2]+=0.5;
+    thing[2]+=0.5;
 
     updateGL();
 }

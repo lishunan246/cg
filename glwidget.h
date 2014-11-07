@@ -13,6 +13,11 @@ public:
     explicit GLWidget(QWidget *parent = 0);
 public slots:
     void left();
+    void up();
+    void right();
+    void down();
+    void zoom_in();
+    void zoom_out();
 
 protected:
     void initializeGL();
