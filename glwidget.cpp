@@ -99,7 +99,8 @@ void GLWidget::screenshot()
     pic.save(filename);
 
     QMessageBox msgBox;
-    msgBox.setText("Screenshot saved!");
+    filename.append(" saved!");
+    msgBox.setText(filename);
     msgBox.setStandardButtons(QMessageBox::Ok);
 
     msgBox.exec();
