@@ -1,6 +1,8 @@
 #include "glwidget.h"
 #include <GL/glu.h>
 #include <QInputDialog>
+#include <QImage>
+#include <QMessageBox>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -83,6 +85,21 @@ void GLWidget::set_color()
         c[i]=(float)temp[i];
     }
     updateGL();
+}
+
+void GLWidget::screenshot()
+{
+    updateGL();
+    QImage pic;
+    pic=grabFrameBuffer();
+    pic.save("screenshot.jpg");
+
+    QMessageBox msgBox;
+    msgBox.setText("Screenshot saved!");
+    msgBox.setStandardButtons(QMessageBox::Ok);
+
+    msgBox.exec();
+
 }
 
 void GLWidget::initializeGL()

@@ -19,6 +19,7 @@ public slots:
     void zoom_in();
     void zoom_out();
     void set_color();
+    void screenshot();
 
 protected:
     void initializeGL();
