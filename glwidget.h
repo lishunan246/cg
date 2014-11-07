@@ -11,6 +11,8 @@ class GLWidget : public QGLWidget
     Q_OBJECT
 public:
     explicit GLWidget(QWidget *parent = 0);
+public slots:
+    void left();
 
 protected:
     void initializeGL();
@@ -18,7 +20,9 @@ protected:
     void resizeGL(int w,int h);
 protected:
     QTimer timer;
-
+private:
+    double eye[3];
+    double thing[3];
 };
 
 #endif // GLWIDGET_H
