@@ -6,8 +6,9 @@ GLWidget::GLWidget(QWidget *parent) :
 {
     eye[0]=eye[1]=eye[2]=thing[1]=thing[2]=thing[0]=0;
     eye[2]=5;
-    //connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
-    //timer.start(16);
+    rotate=0;
+    connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
+    timer.start(50);
 }
 
 void GLWidget::left()
@@ -22,7 +23,12 @@ void GLWidget::initializeGL()
 {
     glClearColor(0.2,0.2,0.2,1);
     glEnable(GL_DEPTH_TEST);
-//    glEnable(GL_LIGHT1);
+    glEnable(GL_LIGHTING);
+    GLfloat a[]={1,1,1,1};
+    glLightfv(GL_LIGHT1,GL_SPECULAR,a);
+    //glLightfv(GL_LIGHT1,GL_AMBIENT,a);
+
+    glEnable(GL_LIGHT1);
 //    glEnable(GL_LIGHTING_BIT);
 //    glEnable(GL_COLOR_MATERIAL);
 }
@@ -33,10 +39,13 @@ void GLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
-    glRotatef(100,1,1,1);
+    glRotatef(rotate,1,1,1);
+    rotate+=10;
 
+    GLfloat c[]={1,0.9,0,1};
 
-    glColor3f(1,0.6,0);
+    //glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,c);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,c);
     glutSolidTeapot(1);
 
 }

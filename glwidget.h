@@ -23,6 +23,7 @@ protected:
 private:
     double eye[3];
     double thing[3];
+    int rotate;
 };
 
 #endif // GLWIDGET_H

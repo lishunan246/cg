@@ -13,3 +13,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::try_close()
+{
+    QMessageBox msgBox;
+    msgBox.setText("You are going to quit.");
+    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    int ret=msgBox.exec();
+    if(ret==QMessageBox::Ok)
+        close();
+}
+

@@ -88,6 +88,9 @@
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -108,7 +111,7 @@
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
+   <slot>try_close()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>347</x>
@@ -124,7 +127,7 @@
    <sender>actionQuit</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
+   <slot>try_close()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -153,4 +156,7 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>try_close()</slot>
+ </slots>
 </ui>
