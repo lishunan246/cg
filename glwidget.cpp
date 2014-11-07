@@ -3,6 +3,7 @@
 #include <QInputDialog>
 #include <QImage>
 #include <QMessageBox>
+#include <QDateTime>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -89,10 +90,13 @@ void GLWidget::set_color()
 
 void GLWidget::screenshot()
 {
+    QDateTime dt=QDateTime::currentDateTime();
+    QString filename=dt.toString(Qt::ISODate);
+    filename.append(".jpg");
     updateGL();
     QImage pic;
     pic=grabFrameBuffer();
-    pic.save("screenshot.jpg");
+    pic.save(filename);
 
     QMessageBox msgBox;
     msgBox.setText("Screenshot saved!");
