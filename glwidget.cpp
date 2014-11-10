@@ -82,6 +82,24 @@ void GLWidget::set_color()
     updateGL();
 }
 
+void GLWidget::set_position()
+{
+    bool ok;
+    GLfloat temp[4];
+
+    for(int i=0;i<3;i++)
+    {
+        double t = QInputDialog::getDouble(0, tr("Input position value"),
+                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
+        if (ok)
+            temp[i]=(float)t;
+        else
+            return;
+    }
+    currentElement->set_position(temp);
+    updateGL();
+}
+
 void GLWidget::screenshot()
 {
     QDateTime dt=QDateTime::currentDateTime();
