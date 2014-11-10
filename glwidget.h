@@ -5,6 +5,7 @@
 #include "glelement.h"
 #include <GL/glut.h>
 #include <QTimer>
+#include <vector>
 
 class GLWidget : public QGLWidget
 {
@@ -21,6 +22,7 @@ public slots:
     void set_color();
     void set_position();
     void screenshot();
+    void add_teapot();
 
 protected:
     void initializeGL();
@@ -33,6 +35,7 @@ private:
     double eye[3];
     double thing[3];
     int rotate;
+    std::vector<GLElement*> v;
 };
 
 #endif // GLWIDGET_H

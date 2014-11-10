@@ -200,6 +200,7 @@
     <slot>set_color()</slot>
     <slot>screenshot()</slot>
     <slot>set_position()</slot>
+    <slot>add_teapot()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -216,8 +217,8 @@
      <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>199</x>
-     <y>149</y>
+     <x>243</x>
+     <y>164</y>
     </hint>
    </hints>
   </connection>
@@ -241,7 +242,7 @@
    <sender>right</sender>
    <signal>clicked()</signal>
    <receiver>widget</receiver>
-   <slot>right()</slot>
+   <slot>add_teapot()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>435</x>

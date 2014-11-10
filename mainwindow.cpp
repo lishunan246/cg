@@ -13,6 +13,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::alert(QString s)
+{
+    QMessageBox msgBox;
+    msgBox.setText(s);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+    return;
+}
+
 void MainWindow::try_close()
 {
     QMessageBox msgBox;

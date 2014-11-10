@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include "glelement.h"
+#include "mainwindow.h"
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -69,6 +70,12 @@ void GLWidget::set_color()
     bool ok;
     GLfloat temp[4];
 
+    if(currentElement==NULL)
+    {
+       MainWindow::alert("No element selected");
+       return;
+    }
+
     for(int i=0;i<4;i++)
     {
         double color = QInputDialog::getDouble(0, tr("Input color value"),
@@ -86,6 +93,12 @@ void GLWidget::set_position()
 {
     bool ok;
     GLfloat temp[4];
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
 
     for(int i=0;i<3;i++)
     {
@@ -110,13 +123,18 @@ void GLWidget::screenshot()
     pic=grabFrameBuffer();
     pic.save(filename);
 
-    QMessageBox msgBox;
+
     filename.append(" saved!");
-    msgBox.setText(filename);
-    msgBox.setStandardButtons(QMessageBox::Ok);
+    MainWindow::alert(filename);
 
-    msgBox.exec();
+}
 
+void GLWidget::add_teapot()
+{
+    GLElement* teapot=new GLElement();
+    currentElement=teapot;
+    std::vector<GLElement*>::iterator i=v.begin();
+    v.insert(i,currentElement);
 }
 
 void GLWidget::initializeGL()
@@ -144,10 +162,12 @@ void GLWidget::paintGL()
     rotate+=10;
 
 
-    static GLElement teapot;
-    currentElement=&teapot;
 
-    teapot.draw();
+
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+        (*it)->draw();
+
+    //teapot.draw();
 }
 
 void GLWidget::resizeGL(int w, int h)
