@@ -28,7 +28,7 @@ void GLElement::set_color(GLfloat *color4)
 
 void GLElement::set_position(GLfloat *position3)
 {
-    for(int i=0;i<4;i++)
+    for(int i=0;i<3;i++)
     {
         this->position[i]=*(position3+i);
     }

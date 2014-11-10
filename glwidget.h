@@ -23,6 +23,7 @@ public slots:
     void set_position();
     void screenshot();
     void add_teapot();
+    void clear();
 
 protected:
     void initializeGL();

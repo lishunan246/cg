@@ -71,6 +71,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionClear"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -97,18 +98,26 @@
     </property>
     <addaction name="actionScreenshot"/>
    </widget>
+   <widget class="QMenu" name="menuTeapot">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuEdit"/>
    <addaction name="menuTool"/>
+   <addaction name="menuTeapot"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
+   <addaction name="actionTeapot"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -182,6 +191,21 @@
     <string>Set position</string>
    </property>
   </action>
+  <action name="actionTeapot">
+   <property name="text">
+    <string>Teapot</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -201,6 +225,7 @@
     <slot>screenshot()</slot>
     <slot>set_position()</slot>
     <slot>add_teapot()</slot>
+    <slot>clear()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -213,8 +238,8 @@
    <slot>try_close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>347</x>
-     <y>254</y>
+     <x>477</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>
@@ -246,7 +271,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>61</y>
+     <y>77</y>
     </hint>
     <hint type="destinationlabel">
      <x>197</x>
@@ -395,6 +420,38 @@
     <hint type="destinationlabel">
      <x>199</x>
      <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionTeapot</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_teapot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClear</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>

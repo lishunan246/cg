@@ -123,7 +123,6 @@ void GLWidget::screenshot()
     pic=grabFrameBuffer();
     pic.save(filename);
 
-
     filename.append(" saved!");
     MainWindow::alert(filename);
 
@@ -135,6 +134,18 @@ void GLWidget::add_teapot()
     currentElement=teapot;
     std::vector<GLElement*>::iterator i=v.begin();
     v.insert(i,currentElement);
+}
+
+void GLWidget::clear()
+{
+    currentElement=NULL;
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        GLElement* t= *it;
+        delete t;
+    }
+
+    v.clear();
 }
 
 void GLWidget::initializeGL()
@@ -154,20 +165,14 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL()
 {
-
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
     glRotatef(rotate,1,1,1);
     rotate+=10;
 
-
-
-
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
         (*it)->draw();
-
-    //teapot.draw();
 }
 
 void GLWidget::resizeGL(int w, int h)
