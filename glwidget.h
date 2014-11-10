@@ -2,7 +2,7 @@
 #define GLWIDGET_H
 
 #include <QGLWidget>
-
+#include "glelement.h"
 #include <GL/glut.h>
 #include <QTimer>
 
@@ -28,10 +28,10 @@ protected:
 protected:
     QTimer timer;
 private:
+    GLElement* currentElement=NULL;
     double eye[3];
     double thing[3];
     int rotate;
-    float c[4];
 };
 
 #endif // GLWIDGET_H

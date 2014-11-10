@@ -4,6 +4,7 @@
 #include <QImage>
 #include <QMessageBox>
 #include <QDateTime>
+#include "glelement.h"
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -13,10 +14,6 @@ GLWidget::GLWidget(QWidget *parent) :
     rotate=0;
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
-    c[0]=1;
-    c[1]=0.9;
-    c[2]=0;
-    c[3]=1;
 }
 
 void GLWidget::left()
@@ -70,21 +67,18 @@ void GLWidget::zoom_out()
 void GLWidget::set_color()
 {
     bool ok;
-    double temp[4];
+    GLfloat temp[4];
 
     for(int i=0;i<4;i++)
     {
         double color = QInputDialog::getDouble(0, tr("Input color value"),
                 tr("Value:"), 1.00, 0, 1, 2, &ok);
         if (ok)
-            temp[i]=color;
+            temp[i]=(float)color;
         else
             return;
     }
-    for(int i=0;i<4;i++)
-    {
-        c[i]=(float)temp[i];
-    }
+    currentElement->set_color(temp);
     updateGL();
 }
 
@@ -110,6 +104,7 @@ void GLWidget::screenshot()
 void GLWidget::initializeGL()
 {
     glClearColor(0.2,0.2,0.2,1);
+    glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
     GLfloat a[]={1,1,1,1};
@@ -131,11 +126,10 @@ void GLWidget::paintGL()
     rotate+=10;
 
 
+    static GLElement teapot;
+    currentElement=&teapot;
 
-    //glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,c);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,c);
-    glutSolidTeapot(1);
-
+    teapot.draw();
 }
 
 void GLWidget::resizeGL(int w, int h)
