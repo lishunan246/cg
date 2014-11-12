@@ -6,11 +6,12 @@
 class GLElement
 {
 private:
+    void* parent;//it is acutually GLWidget*
     GLfloat color[4];
     GLfloat position[3];
     GLdouble size;
 public:
-    GLElement();
+    GLElement(void* parent);
     void draw();
     void set_color(GLfloat* color4);
     void set_position(GLfloat* position3);

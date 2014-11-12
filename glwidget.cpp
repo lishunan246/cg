@@ -151,7 +151,7 @@ void GLWidget::screenshot()
 
 void GLWidget::add_teapot()
 {
-    GLElement* teapot=new GLElement();
+    GLElement* teapot=new GLElement(this);
     currentElement=teapot;
     std::vector<GLElement*>::iterator i=v.begin();
     v.insert(i,currentElement);

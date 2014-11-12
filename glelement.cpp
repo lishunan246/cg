@@ -1,12 +1,13 @@
 #include "glelement.h"
 
-GLElement::GLElement()
+GLElement::GLElement(void *parent)
 {
     for(int i=0;i<4;i++)
     {
         color[i]=1.0f;
     }
     size=1;
+    this->parent=parent;
 }
 
 void GLElement::draw()
