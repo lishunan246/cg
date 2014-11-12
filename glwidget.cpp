@@ -155,6 +155,8 @@ void GLWidget::add_teapot()
     currentElement=teapot;
     std::vector<GLElement*>::iterator i=v.begin();
     v.insert(i,currentElement);
+
+    emit glelement_added();
 }
 
 void GLWidget::clear()

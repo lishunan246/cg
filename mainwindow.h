@@ -19,10 +19,11 @@ public:
 
 public slots:
     void try_close();
-
+    void add_item();
 
 private:
     Ui::MainWindow *ui;
+    int element_count;
 };
 
 #endif // MAINWINDOW_H

@@ -221,6 +221,7 @@
    <header>glwidget.h</header>
    <container>1</container>
    <slots>
+    <signal>glelement_added()</signal>
     <slot>left()</slot>
     <slot>up()</slot>
     <slot>right()</slot>
@@ -478,8 +479,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>glelement_added()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>add_item()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>try_close()</slot>
+  <slot>add_item()</slot>
  </slots>
 </ui>

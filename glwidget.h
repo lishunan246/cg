@@ -26,6 +26,8 @@ public slots:
     void add_teapot();
     void clear();
 
+signals:
+    void glelement_added();
 
 protected:
     void initializeGL();

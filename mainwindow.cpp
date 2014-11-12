@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    element_count=0;
+
 }
 
 MainWindow::~MainWindow()
@@ -31,5 +34,13 @@ void MainWindow::try_close()
     int ret=msgBox.exec();
     if(ret==QMessageBox::Ok)
         close();
+}
+
+void MainWindow::add_item()
+{
+
+
+
+    ui->statusBar->showMessage("ok",0);
 }
 

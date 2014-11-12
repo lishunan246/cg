@@ -1,5 +1,5 @@
 #include "glelement.h"
-
+#include <QObject>
 GLElement::GLElement(void *parent)
 {
     for(int i=0;i<4;i++)
@@ -8,6 +8,7 @@ GLElement::GLElement(void *parent)
     }
     size=1;
     this->parent=parent;
+
 }
 
 void GLElement::draw()
