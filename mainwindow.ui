@@ -91,6 +91,7 @@
     </property>
     <addaction name="actionSet_color"/>
     <addaction name="actionSet_position"/>
+    <addaction name="actionSet_size"/>
    </widget>
    <widget class="QMenu" name="menuTool">
     <property name="title">
@@ -115,7 +116,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionTeapot"/>
   </widget>
@@ -206,6 +207,11 @@
     <string>Clear</string>
    </property>
   </action>
+  <action name="actionSet_size">
+   <property name="text">
+    <string>Set size</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -226,6 +232,7 @@
     <slot>set_position()</slot>
     <slot>add_teapot()</slot>
     <slot>clear()</slot>
+    <slot>set_size()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -444,6 +451,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_size</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_size()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

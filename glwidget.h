@@ -21,9 +21,11 @@ public slots:
     void zoom_out();
     void set_color();
     void set_position();
+    void set_size();
     void screenshot();
     void add_teapot();
     void clear();
+
 
 protected:
     void initializeGL();

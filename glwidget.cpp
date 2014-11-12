@@ -113,6 +113,27 @@ void GLWidget::set_position()
     updateGL();
 }
 
+void GLWidget::set_size()
+{
+    bool ok;
+    GLdouble temp;
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+   double t = QInputDialog::getDouble(0, tr("Input position value"),
+                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
+   if (ok)
+       temp=(float)t;
+   else
+       return;
+    currentElement->set_size(temp);
+    updateGL();
+}
+
 void GLWidget::screenshot()
 {
     QDateTime dt=QDateTime::currentDateTime();
