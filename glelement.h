@@ -3,6 +3,7 @@
 #include <QGLWidget>
 #include <GL/glut.h>
 #include <QListWidgetItem>
+#include <QtXml>
 
 class GLElement
 {
@@ -24,6 +25,8 @@ public:
     void set_color(GLfloat* color4);
     void set_position(GLfloat* position3);
     void set_size(GLdouble s);
+
+    QDomElement to_xml(QDomDocument* doc);
     ~GLElement();
 };
 

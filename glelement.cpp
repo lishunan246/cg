@@ -3,6 +3,7 @@
 GLElement::GLElement(void *parent)
 {
     type="teapot";
+    size=1;
     for(int i=0;i<4;i++)
     {
         color[i]=1.0f;
@@ -11,7 +12,7 @@ GLElement::GLElement(void *parent)
     {
         position[i]=0.0f;
     }
-    size=1;
+
     this->parent=parent;
     list_ltem =new QListWidgetItem(type);
 }
@@ -64,6 +65,35 @@ void GLElement::set_position(GLfloat *position3)
 void GLElement::set_size(GLdouble s)
 {
     size=s;
+}
+
+QDomElement GLElement::to_xml(QDomDocument *doc)
+{
+    QDomElement element=doc->createElement(type);
+    element.setAttribute("size",size);
+
+    QDomElement positions=doc->createElement("positions");
+    element.appendChild(positions);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=doc->createElement("position");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",position[i]);
+        positions.appendChild(node);
+    }
+
+    QDomElement colors=doc->createElement("colors");
+    element.appendChild(colors);
+
+    for(int i=0;i<4;i++)
+    {
+        QDomElement node=doc->createElement("color");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",color[i]);
+        colors.appendChild(node);
+    }
+    return element;
 }
 
 GLElement::~GLElement()

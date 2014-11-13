@@ -6,6 +6,9 @@
 #include <QDateTime>
 #include "glelement.h"
 #include "mainwindow.h"
+#include <QFile>
+#include <QtXml>
+#include <QDomDocument>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -215,6 +218,58 @@ void GLWidget::delete_element()
    {
        return;
    }
+}
+
+void GLWidget::savetofile()
+{
+    QDomDocument document;
+    QDomElement root=document.createElement("GLWidget");
+    document.appendChild(root);
+
+    QDomElement eyes=document.createElement("eyes");
+    root.appendChild(eyes);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=document.createElement("eye");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",eye[i]);
+        eyes.appendChild(node);
+    }
+
+    QDomElement things=document.createElement("things");
+    root.appendChild(things);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=document.createElement("thing");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",thing[i]);
+        things.appendChild(node);
+    }
+
+    QDomElement glelements=document.createElement("GLElements");
+    root.appendChild(glelements);
+
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+       QDomElement node=(*it)->to_xml(&document);
+       glelements.appendChild(node);
+    }
+
+
+    QFile file("a.xml");
+    if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
+    {
+        MainWindow::alert("Fail to open file!");
+    }
+    else
+    {
+        QTextStream stream(&file);
+        stream<<document.toString();
+        file.close();
+        MainWindow::alert("Saved!");
+    }
 }
 
 void GLWidget::clear()
