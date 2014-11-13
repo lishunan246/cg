@@ -16,7 +16,9 @@ private:
 public:
 
     GLElement(void* parent);
+    //draw the element
     void draw();
+    //draw the element when it is selected
     void draw_current();
     QListWidgetItem* getlistltem();
     void set_color(GLfloat* color4);

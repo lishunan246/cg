@@ -28,6 +28,7 @@ public slots:
     void screenshot();
     void add_teapot();
     void delete_element();
+    //remove all GLElements
     void clear();
 
 signals:

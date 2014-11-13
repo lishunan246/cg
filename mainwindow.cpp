@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    element_count=0;
+
     connect(
                 ui->widget,
                 SIGNAL(glelement_added(QListWidgetItem* )),

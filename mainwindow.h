@@ -21,6 +21,7 @@ public:
 public slots:
     void try_close();
     void add_item(QListWidgetItem* l);
+    //when an element is deleted, the currentElement must be updated
     void set_current(QListWidgetItem* l);
 signals:
     void glelement_selected(QListWidgetItem* l);
@@ -30,7 +31,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    int element_count;
+
 };
 
 #endif // MAINWINDOW_H
