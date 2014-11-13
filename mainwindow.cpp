@@ -49,8 +49,8 @@ void MainWindow::try_close()
 
 void MainWindow::add_item(QListWidgetItem *l)
 {
-    int count=ui->listWidget->count();
-    ui->listWidget->insertItem(count-1,l);
+
+    ui->listWidget->insertItem(0,l);
 
     ui->statusBar->showMessage("ok",0);
 }

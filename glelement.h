@@ -17,6 +17,7 @@ public:
 
     GLElement(void* parent);
     void draw();
+    void draw_current();
     QListWidgetItem* getlistltem();
     void set_color(GLfloat* color4);
     void set_position(GLfloat* position3);

@@ -210,7 +210,13 @@ void GLWidget::paintGL()
     rotate+=10;
 
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
-        (*it)->draw();
+    {
+        if(currentElement==*it)
+            (*it)->draw_current();
+        else
+            (*it)->draw();
+    }
+
 }
 
 void GLWidget::resizeGL(int w, int h)

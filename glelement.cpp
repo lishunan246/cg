@@ -24,6 +24,18 @@ void GLElement::draw()
         glPopMatrix();
 }
 
+void GLElement::draw_current()
+{
+    glPushMatrix();
+        glTranslatef(position[0],position[1],position[2]);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,color);
+       // glScalef(scaleX,scaleY,scaleZ);
+        glutWireTeapot(size);
+        //glutSolidCube(1);
+
+        glPopMatrix();
+}
+
 QListWidgetItem* GLElement::getlistltem()
 {
     return list_ltem;
