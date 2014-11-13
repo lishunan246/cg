@@ -7,6 +7,10 @@ GLElement::GLElement(void *parent)
     {
         color[i]=1.0f;
     }
+    for(int i=0;i<3;i++)
+    {
+        position[i]=0.0f;
+    }
     size=1;
     this->parent=parent;
     list_ltem =new QListWidgetItem(type);
