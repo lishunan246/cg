@@ -49,6 +49,16 @@ void GLWidget::down()
     updateGL();
 }
 
+void GLWidget::rotate_left()
+{
+    rotate-=10;
+}
+
+void GLWidget::rotate_right()
+{
+    rotate+=10;
+}
+
 void GLWidget::zoom_in()
 {
     eye[2]-=0.5;
@@ -206,8 +216,8 @@ void GLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
-    glRotatef(rotate,1,1,1);
-    rotate+=10;
+    glRotatef(rotate,0,1,0);
+    //rotate+=10;
 
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {

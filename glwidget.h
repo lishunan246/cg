@@ -17,6 +17,8 @@ public slots:
     void up();
     void right();
     void down();
+    void rotate_left();
+    void rotate_right();
     void zoom_in();
     void zoom_out();
     void set_color();

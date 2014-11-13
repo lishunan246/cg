@@ -87,6 +87,8 @@
     <addaction name="actionMove_left"/>
     <addaction name="actionZoom_in"/>
     <addaction name="actionZoom_out"/>
+    <addaction name="actionRotate_left"/>
+    <addaction name="actionRotate_right"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -169,7 +171,7 @@
     <string>Zoom in</string>
    </property>
    <property name="shortcut">
-    <string>=</string>
+    <string>W</string>
    </property>
   </action>
   <action name="actionZoom_out">
@@ -177,7 +179,7 @@
     <string>Zoom out</string>
    </property>
    <property name="shortcut">
-    <string>-</string>
+    <string>S</string>
    </property>
   </action>
   <action name="actionSet_color">
@@ -215,6 +217,22 @@
     <string>Set size</string>
    </property>
   </action>
+  <action name="actionRotate_left">
+   <property name="text">
+    <string>Rotate left</string>
+   </property>
+   <property name="shortcut">
+    <string>A</string>
+   </property>
+  </action>
+  <action name="actionRotate_right">
+   <property name="text">
+    <string>Rotate right</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -236,6 +254,8 @@
     <slot>add_teapot()</slot>
     <slot>clear()</slot>
     <slot>set_size()</slot>
+    <slot>rotate_left()</slot>
+    <slot>rotate_right()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -454,6 +474,38 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>set_size()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRotate_left</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>rotate_left()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRotate_right</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>rotate_right()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

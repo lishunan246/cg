@@ -51,6 +51,7 @@ void MainWindow::add_item(QListWidgetItem *l)
 {
 
     ui->listWidget->insertItem(0,l);
+    ui->listWidget->setCurrentItem(l);
 
     ui->statusBar->showMessage("ok",0);
 }
