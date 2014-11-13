@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
                 this,
                 SLOT(add_item(QListWidgetItem* ))
                 );
+    connect(
+                this,
+                SIGNAL(glelement_selected(QListWidgetItem*)),
+                ui->widget,
+                SLOT(set_current(QListWidgetItem* ))
+                       );
 }
 
 MainWindow::~MainWindow()
@@ -49,3 +55,8 @@ void MainWindow::add_item(QListWidgetItem *l)
     ui->statusBar->showMessage("ok",0);
 }
 
+
+void MainWindow::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    emit glelement_selected(current);
+}

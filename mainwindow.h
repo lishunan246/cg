@@ -21,6 +21,11 @@ public:
 public slots:
     void try_close();
     void add_item(QListWidgetItem* l);
+signals:
+    void glelement_selected(QListWidgetItem* l);
+
+private slots:
+    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
