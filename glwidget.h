@@ -12,6 +12,7 @@ class GLWidget : public QGLWidget
     Q_OBJECT
 public:
     explicit GLWidget(QWidget *parent = 0);
+    QDomElement to_xml(QDomDocument* doc);
 public slots:
     void left();
     void up();

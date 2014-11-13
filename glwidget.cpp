@@ -21,6 +21,45 @@ GLWidget::GLWidget(QWidget *parent) :
     timer.start(50);
 }
 
+QDomElement GLWidget::to_xml(QDomDocument *doc)
+{
+    QDomElement root=doc->createElement("GLWidget");
+
+
+    QDomElement eyes=doc->createElement("eyes");
+    root.appendChild(eyes);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=doc->createElement("eye");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",eye[i]);
+        eyes.appendChild(node);
+    }
+
+    QDomElement things=doc->createElement("things");
+    root.appendChild(things);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=doc->createElement("thing");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",thing[i]);
+        things.appendChild(node);
+    }
+
+    QDomElement glelements=doc->createElement("GLElements");
+    root.appendChild(glelements);
+
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+       QDomElement node=(*it)->to_xml(doc);
+       glelements.appendChild(node);
+    }
+
+    return root;
+}
+
 void GLWidget::left()
 {
     eye[0]+=0.5;
@@ -224,39 +263,9 @@ void GLWidget::delete_element()
 void GLWidget::savetofile()
 {
     QDomDocument document;
-    QDomElement root=document.createElement("GLWidget");
+    QDomElement root=this->to_xml(&document);
     document.appendChild(root);
 
-    QDomElement eyes=document.createElement("eyes");
-    root.appendChild(eyes);
-
-    for(int i=0;i<3;i++)
-    {
-        QDomElement node=document.createElement("eye");
-        node.setAttribute("index",QString::number(i));
-        node.setAttribute("value",eye[i]);
-        eyes.appendChild(node);
-    }
-
-    QDomElement things=document.createElement("things");
-    root.appendChild(things);
-
-    for(int i=0;i<3;i++)
-    {
-        QDomElement node=document.createElement("thing");
-        node.setAttribute("index",QString::number(i));
-        node.setAttribute("value",thing[i]);
-        things.appendChild(node);
-    }
-
-    QDomElement glelements=document.createElement("GLElements");
-    root.appendChild(glelements);
-
-    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
-    {
-       QDomElement node=(*it)->to_xml(&document);
-       glelements.appendChild(node);
-    }
 
     QStringList fileNames;
     QFileDialog dialog(0);
@@ -267,14 +276,15 @@ void GLWidget::savetofile()
     if (dialog.exec())
         fileNames = dialog.selectedFiles();
 
+    //dialog maybe cancelled
     if(fileNames.count()==0)
         return;
 
     QString filename=fileNames.at(0);
 
-
-
-    QFile file(filename+".xml");
+    if(!filename.endsWith(".xml",Qt::CaseInsensitive))
+        filename=filename+".xml";
+    QFile file(filename);
     if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
     {
         MainWindow::alert("Fail to open file!");
@@ -322,7 +332,6 @@ void GLWidget::paintGL()
     glLoadIdentity();
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
     glRotatef(rotate,0,1,0);
-    //rotate+=10;
 
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {
