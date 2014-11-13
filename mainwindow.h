@@ -21,6 +21,7 @@ public:
 public slots:
     void try_close();
     void add_item(QListWidgetItem* l);
+    void set_current(QListWidgetItem* l);
 signals:
     void glelement_selected(QListWidgetItem* l);
 

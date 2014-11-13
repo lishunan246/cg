@@ -27,10 +27,12 @@ public slots:
     void set_current(QListWidgetItem* l);
     void screenshot();
     void add_teapot();
+    void delete_element();
     void clear();
 
 signals:
     void glelement_added(QListWidgetItem* l);
+    void glelement_selected(QListWidgetItem* l);
 
 protected:
     void initializeGL();

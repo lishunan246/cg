@@ -97,6 +97,7 @@
     <addaction name="actionSet_color"/>
     <addaction name="actionSet_position"/>
     <addaction name="actionSet_size"/>
+    <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuTool">
     <property name="title">
@@ -233,6 +234,14 @@
     <string>D</string>
    </property>
   </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -256,6 +265,7 @@
     <slot>set_size()</slot>
     <slot>rotate_left()</slot>
     <slot>rotate_right()</slot>
+    <slot>delete_element()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -506,6 +516,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>rotate_right()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDelete</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>delete_element()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

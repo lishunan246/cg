@@ -184,13 +184,47 @@ void GLWidget::add_teapot()
     emit glelement_added(currentElement->getlistltem());
 }
 
+void GLWidget::delete_element()
+{
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); )
+    {
+        if(currentElement==*it)
+        {
+            it=v.erase(it);
+            delete currentElement;
+            break;
+        }
+        else
+            ++it;
+    }
+
+   if(v.size())
+   {
+       std::vector<GLElement*>::iterator it = v.begin();
+       currentElement=*it;
+       emit glelement_selected(currentElement->getlistltem());
+   }
+   else
+   {
+       return;
+   }
+}
+
 void GLWidget::clear()
 {
     currentElement=NULL;
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {
         GLElement* t= *it;
-        delete t;
+        if(t==NULL)
+            delete t;
     }
 
     v.clear();
@@ -221,6 +255,8 @@ void GLWidget::paintGL()
 
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {
+        if(*it==NULL)
+            continue;
         if(currentElement==*it)
             (*it)->draw_current();
         else
