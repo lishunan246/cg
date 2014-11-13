@@ -28,9 +28,12 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="right">
-        <property name="text">
-         <string>&gt;</string>
+       <widget class="QListWidget" name="listWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
        </widget>
       </item>
@@ -221,7 +224,6 @@
    <header>glwidget.h</header>
    <container>1</container>
    <slots>
-    <signal>glelement_added()</signal>
     <slot>left()</slot>
     <slot>up()</slot>
     <slot>right()</slot>
@@ -268,22 +270,6 @@
     <hint type="destinationlabel">
      <x>243</x>
      <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>right</sender>
-   <signal>clicked()</signal>
-   <receiver>widget</receiver>
-   <slot>add_teapot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>435</x>
-     <y>77</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>197</x>
-     <y>172</y>
     </hint>
    </hints>
   </connection>
@@ -479,25 +465,8 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>widget</sender>
-   <signal>glelement_added()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>add_item()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
-     <y>181</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>243</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
   <slot>try_close()</slot>
-  <slot>add_item()</slot>
  </slots>
 </ui>

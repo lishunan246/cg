@@ -8,7 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     element_count=0;
-
+    connect(
+                ui->widget,
+                SIGNAL(glelement_added(QListWidgetItem* )),
+                this,
+                SLOT(add_item(QListWidgetItem* ))
+                );
 }
 
 MainWindow::~MainWindow()
@@ -36,10 +41,10 @@ void MainWindow::try_close()
         close();
 }
 
-void MainWindow::add_item()
+void MainWindow::add_item(QListWidgetItem *l)
 {
-
-
+    int count=ui->listWidget->count();
+    ui->listWidget->insertItem(count-1,l);
 
     ui->statusBar->showMessage("ok",0);
 }

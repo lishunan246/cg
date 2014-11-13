@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QListWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +20,7 @@ public:
 
 public slots:
     void try_close();
-    void add_item();
+    void add_item(QListWidgetItem* l);
 
 private:
     Ui::MainWindow *ui;

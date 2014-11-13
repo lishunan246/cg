@@ -22,12 +22,13 @@ public slots:
     void set_color();
     void set_position();
     void set_size();
+    void set_current(QListWidgetItem* l);
     void screenshot();
     void add_teapot();
     void clear();
 
 signals:
-    void glelement_added();
+    void glelement_added(QListWidgetItem* l);
 
 protected:
     void initializeGL();

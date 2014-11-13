@@ -134,6 +134,21 @@ void GLWidget::set_size()
     updateGL();
 }
 
+void GLWidget::set_current(QListWidgetItem *l)
+{
+    int found=0;
+    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        if((*it)->getlistltem()==l)
+        {
+            currentElement=*it;
+            found=1;
+        }
+    }
+    if(found==0)
+        currentElement=NULL;
+}
+
 void GLWidget::screenshot()
 {
     QDateTime dt=QDateTime::currentDateTime();
@@ -156,7 +171,7 @@ void GLWidget::add_teapot()
     std::vector<GLElement*>::iterator i=v.begin();
     v.insert(i,currentElement);
 
-    emit glelement_added();
+    emit glelement_added(currentElement->getlistltem());
 }
 
 void GLWidget::clear()

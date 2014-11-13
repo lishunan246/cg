@@ -2,13 +2,14 @@
 #include <QObject>
 GLElement::GLElement(void *parent)
 {
+    type="teapot";
     for(int i=0;i<4;i++)
     {
         color[i]=1.0f;
     }
     size=1;
     this->parent=parent;
-
+    list_ltem =new QListWidgetItem(type);
 }
 
 void GLElement::draw()
@@ -20,7 +21,12 @@ void GLElement::draw()
         glutSolidTeapot(size);
         //glutSolidCube(1);
 
-    glPopMatrix();
+        glPopMatrix();
+}
+
+QListWidgetItem* GLElement::getlistltem()
+{
+    return list_ltem;
 }
 
 void GLElement::set_color(GLfloat *color4)
@@ -42,4 +48,9 @@ void GLElement::set_position(GLfloat *position3)
 void GLElement::set_size(GLdouble s)
 {
     size=s;
+}
+
+GLElement::~GLElement()
+{
+    delete list_ltem;
 }
