@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QtXml>
 #include <QDomDocument>
+#include <QFileDialog>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -257,8 +258,23 @@ void GLWidget::savetofile()
        glelements.appendChild(node);
     }
 
+    QStringList fileNames;
+    QFileDialog dialog(0);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(tr("XML Files (*.xml)"));
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
 
-    QFile file("a.xml");
+    if (dialog.exec())
+        fileNames = dialog.selectedFiles();
+
+    if(fileNames.count()==0)
+        return;
+
+    QString filename=fileNames.at(0);
+
+
+
+    QFile file(filename+".xml");
     if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
     {
         MainWindow::alert("Fail to open file!");
