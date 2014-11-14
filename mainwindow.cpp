@@ -37,6 +37,7 @@ MainWindow::~MainWindow()
 void MainWindow::alert(QString s)
 {
     QMessageBox msgBox;
+    msgBox.setWindowTitle("CG");
     msgBox.setText(s);
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
@@ -66,9 +67,32 @@ QString MainWindow::new_file(QString filter,QString type)
     return filename;
 }
 
+QString MainWindow::open_file(QString filter)
+{
+    QStringList fileNames;
+    QFileDialog dialog(0);
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setNameFilter(filter);
+
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+
+    if (dialog.exec())
+        fileNames = dialog.selectedFiles();
+
+    //dialog maybe cancelled
+    if(fileNames.count()==0)
+        return NULL;
+
+    QString filename=fileNames.at(0);
+
+
+    return filename;
+}
+
 void MainWindow::try_close()
 {
     QMessageBox msgBox;
+    msgBox.setWindowTitle("Quit");
     msgBox.setText("You are going to quit.");
     msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);

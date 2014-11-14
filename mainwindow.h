@@ -18,6 +18,7 @@ public:
     ~MainWindow();
     static void alert(QString s);
     static QString new_file(QString filter, QString type);
+    static QString open_file(QString filter);
 
 public slots:
     void try_close();

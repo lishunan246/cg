@@ -74,6 +74,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionClear"/>
     <addaction name="actionQuit"/>
@@ -251,6 +252,14 @@
     <string>Ctrl+S</string>
    </property>
   </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -276,6 +285,7 @@
     <slot>rotate_right()</slot>
     <slot>delete_element()</slot>
     <slot>savetofile()</slot>
+    <slot>loadfile()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -558,6 +568,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>savetofile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>loadfile()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

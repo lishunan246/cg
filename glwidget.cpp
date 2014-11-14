@@ -285,6 +285,23 @@ void GLWidget::savetofile()
     }
 }
 
+void GLWidget::loadfile()
+{
+    QString filename=MainWindow::open_file("XML Files (*.xml)");
+    if(filename==NULL)
+        return;
+
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        MainWindow::alert("Fail to open file!");
+    }
+    else
+    {
+        MainWindow::alert(filename);
+    }
+}
+
 void GLWidget::clear()
 {
     currentElement=NULL;

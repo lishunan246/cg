@@ -30,6 +30,7 @@ public slots:
     void add_teapot();
     void delete_element();
     void savetofile();
+    void loadfile();
     //remove all GLElements
     void clear();
 
