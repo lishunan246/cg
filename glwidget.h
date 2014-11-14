@@ -30,7 +30,8 @@ public slots:
     void screenshot();
     void add_element(GLElement* e);
     void add_teapot();
-    void delete_element();
+    void delete_current();
+    void delete_element(GLElement* e);
     void savetofile();
     void loadfile();
     //remove all GLElements

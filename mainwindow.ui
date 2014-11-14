@@ -283,9 +283,9 @@
     <slot>set_size()</slot>
     <slot>rotate_left()</slot>
     <slot>rotate_right()</slot>
-    <slot>delete_element()</slot>
     <slot>savetofile()</slot>
     <slot>loadfile()</slot>
+    <slot>delete_current()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -551,7 +551,7 @@
    <sender>actionDelete</sender>
    <signal>triggered()</signal>
    <receiver>widget</receiver>
-   <slot>delete_element()</slot>
+   <slot>delete_current()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

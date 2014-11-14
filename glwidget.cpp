@@ -307,7 +307,7 @@ void GLWidget::add_teapot()
     add_element(teapot);
 }
 
-void GLWidget::delete_element()
+void GLWidget::delete_current()
 {
     if(currentElement==NULL)
     {
@@ -315,13 +315,17 @@ void GLWidget::delete_element()
         return;
     }
 
+    delete_element(currentElement);
+}
 
+void GLWidget::delete_element(GLElement *e)
+{
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); )
     {
-        if(currentElement==*it)
+        if(e==*it)
         {
             it=v.erase(it);
-            delete currentElement;
+            delete e;
             break;
         }
         else
@@ -402,11 +406,9 @@ void GLWidget::clear()
 
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {
-        GLElement* t= *it;
-        if(t==NULL)
-            delete t;
+        if(*it!=NULL)
+            delete *it;
     }
-
     v.clear();
 }
 
