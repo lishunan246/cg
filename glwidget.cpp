@@ -2,7 +2,6 @@
 #include <GL/glu.h>
 #include <QInputDialog>
 #include <QImage>
-#include <QMessageBox>
 #include <QDateTime>
 #include "glelement.h"
 #include "mainwindow.h"
@@ -14,12 +13,19 @@
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
-    eye[0]=eye[1]=eye[2]=thing[1]=thing[2]=thing[0]=0;
-    eye[2]=5;
-    rotate=0;
+    initialize();
+    clear();
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
 }
+
+void GLWidget::initialize()
+{
+    eye[0]=eye[1]=eye[2]=thing[1]=thing[2]=thing[0]=0;
+    eye[2]=5;
+    rotate=0;
+}
+
 
 QDomElement GLWidget::to_xml(QDomDocument *doc)
 {
@@ -58,6 +64,75 @@ QDomElement GLWidget::to_xml(QDomDocument *doc)
     }
 
     return root;
+}
+
+void GLWidget::from_xml(QDomElement root)
+{
+    initialize();
+    clear();
+
+    QDomNode n = root.firstChild();
+    while(!n.isNull())
+    {
+        QDomElement e = n.toElement(); // try to convert the node to an element.
+        if(!e.isNull())
+        {
+            QString s=e.tagName();
+
+            if(s=="eyes")
+            {
+                QDomNode nodes[3];
+                nodes[0]=n.firstChild();
+                nodes[1]=nodes[0].nextSibling();
+                nodes[2]=nodes[1].nextSibling();
+                for(int i=0;i<3;i++)
+                {
+                    QDomElement e=nodes[i].toElement();
+                    QString v=e.attribute("value");
+
+                    eye[i]=v.toDouble();
+                }
+            }
+            else if(s=="things")
+            {
+                QDomNode nodes[3];
+                nodes[0]=n.firstChild();
+                nodes[1]=nodes[0].nextSibling();
+                nodes[2]=nodes[1].nextSibling();
+                for(int i=0;i<3;i++)
+                {
+                    QDomElement e=nodes[i].toElement();
+                    QString v=e.attribute("value");
+
+                    thing[i]=v.toDouble();
+                }
+            }
+
+            else if(s=="GLElements")
+            {
+                QDomNode node=e.firstChild();
+                while(!node.isNull())
+                {
+                    QDomElement element=node.toElement();
+
+                    if(!element.isNull())
+                    {
+                        GLElement* newobject=GLElement::from_xml(element);
+
+                        add_element(newobject);
+                    }
+
+                    node=node.nextSibling();
+                }
+            }
+            //unhandled children type
+            else
+            {
+
+            }
+        }
+        n = n.nextSibling();
+    }
 }
 
 void GLWidget::left()
@@ -217,14 +292,19 @@ void GLWidget::screenshot()
 
 }
 
+void GLWidget::add_element(GLElement *e)
+{
+    currentElement=e;
+    std::vector<GLElement*>::iterator i=v.begin();
+    v.insert(i,e);
+
+    emit glelement_added(e->getlistltem());
+}
+
 void GLWidget::add_teapot()
 {
-    GLElement* teapot=new GLElement(this);
-    currentElement=teapot;
-    std::vector<GLElement*>::iterator i=v.begin();
-    v.insert(i,currentElement);
-
-    emit glelement_added(currentElement->getlistltem());
+    GLElement* teapot=new GLElement();
+    add_element(teapot);
 }
 
 void GLWidget::delete_element()
@@ -295,16 +375,31 @@ void GLWidget::loadfile()
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text))
     {
         MainWindow::alert("Fail to open file!");
+        return;
     }
-    else
+
+    QDomDocument doc;
+
+    if (!doc.setContent(&file))
     {
-        MainWindow::alert(filename);
+        MainWindow::alert("Fail to parse!");
+        file.close();
+        return;
     }
+
+    file.close();
+
+    QDomElement docElem = doc.documentElement();
+
+    from_xml(docElem);
+
+    MainWindow::alert("Load successfully!");
 }
 
 void GLWidget::clear()
 {
     currentElement=NULL;
+
     for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
     {
         GLElement* t= *it;
@@ -364,5 +459,6 @@ void GLWidget::resizeGL(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
+
 
 

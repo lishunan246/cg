@@ -8,7 +8,6 @@
 class GLElement
 {
 private:
-    void* parent;//it is acutually GLWidget*
     GLfloat color[4];
     GLfloat position[3];
     GLdouble size;
@@ -16,7 +15,9 @@ private:
     QListWidgetItem* list_ltem;
 public:
 
-    GLElement(void* parent);
+    GLElement();
+
+    static GLElement* from_xml(QDomElement dom) ;
     //draw the element
     void draw();
     //draw the element when it is selected

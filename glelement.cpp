@@ -1,6 +1,6 @@
 #include "glelement.h"
 #include <QObject>
-GLElement::GLElement(void *parent)
+GLElement::GLElement()
 {
     type="teapot";
     size=1;
@@ -13,8 +13,59 @@ GLElement::GLElement(void *parent)
         position[i]=0.0f;
     }
 
-    this->parent=parent;
     list_ltem =new QListWidgetItem(type);
+}
+
+GLElement *GLElement::from_xml(QDomElement dom)
+{
+    if(dom.tagName()=="teapot")
+    {
+        GLElement* p=new GLElement();
+        QDomNode node=dom.firstChild();
+        while(!node.isNull())
+        {
+            QDomElement element=node.toElement();
+            if(element.tagName()=="positions")
+            {
+                QDomNode nodes[3];
+                nodes[0]=node.firstChild();
+                nodes[1]=nodes[0].nextSibling();
+                nodes[2]=nodes[1].nextSibling();
+                for(int i=0;i<3;i++)
+                {
+                    QDomElement e=nodes[i].toElement();
+                    QString v=e.attribute("value");
+
+                    p->position[i]=v.toDouble();
+                }
+            }
+            else if(element.tagName()=="colors")
+            {
+                QDomNode nodes[3];
+                nodes[0]=node.firstChild();
+                nodes[1]=nodes[0].nextSibling();
+                nodes[2]=nodes[1].nextSibling();
+                nodes[3]=nodes[2].nextSibling();
+                for(int i=0;i<4;i++)
+                {
+                    QDomElement e=nodes[i].toElement();
+                    QString v=e.attribute("value");
+
+                    p->color[i]=v.toDouble();
+                }
+            }
+            else
+            {
+
+            }
+            node=node.nextSibling();
+        }
+        return p;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 void GLElement::draw()

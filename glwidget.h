@@ -13,6 +13,7 @@ class GLWidget : public QGLWidget
 public:
     explicit GLWidget(QWidget *parent = 0);
     QDomElement to_xml(QDomDocument* doc);
+    void from_xml(QDomElement root);
 public slots:
     void left();
     void up();
@@ -27,6 +28,7 @@ public slots:
     void set_size();
     void set_current(QListWidgetItem* l);
     void screenshot();
+    void add_element(GLElement* e);
     void add_teapot();
     void delete_element();
     void savetofile();
@@ -50,6 +52,7 @@ private:
     double thing[3];
     int rotate;
     std::vector<GLElement*> v;
+    void initialize();
 };
 
 #endif // GLWIDGET_H
