@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <string>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,6 +41,29 @@ void MainWindow::alert(QString s)
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
     return;
+}
+
+QString MainWindow::new_file(QString filter,QString type)
+{
+    QStringList fileNames;
+    QFileDialog dialog(0);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(filter);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+
+    if (dialog.exec())
+        fileNames = dialog.selectedFiles();
+
+    //dialog maybe cancelled
+    if(fileNames.count()==0)
+        return NULL;
+
+    QString filename=fileNames.at(0);
+
+    if(!filename.endsWith(type,Qt::CaseInsensitive))
+        filename=filename+type;
+
+    return filename;
 }
 
 void MainWindow::try_close()

@@ -17,6 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     static void alert(QString s);
+    static QString new_file(QString filter, QString type);
 
 public slots:
     void try_close();

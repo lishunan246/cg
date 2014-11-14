@@ -266,24 +266,11 @@ void GLWidget::savetofile()
     QDomElement root=this->to_xml(&document);
     document.appendChild(root);
 
+    QString filename=MainWindow::new_file("XML Files (*.xml)",".xml");
 
-    QStringList fileNames;
-    QFileDialog dialog(0);
-    dialog.setFileMode(QFileDialog::AnyFile);
-    dialog.setNameFilter(tr("XML Files (*.xml)"));
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
-
-    if (dialog.exec())
-        fileNames = dialog.selectedFiles();
-
-    //dialog maybe cancelled
-    if(fileNames.count()==0)
+    if(filename==NULL)
         return;
 
-    QString filename=fileNames.at(0);
-
-    if(!filename.endsWith(".xml",Qt::CaseInsensitive))
-        filename=filename+".xml";
     QFile file(filename);
     if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
     {
