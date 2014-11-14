@@ -8,7 +8,6 @@
 #include <QFile>
 #include <QtXml>
 #include <QDomDocument>
-#include <QFileDialog>
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -30,6 +29,7 @@ void GLWidget::initialize()
 QDomElement GLWidget::to_xml(QDomDocument *doc)
 {
     QDomElement root=doc->createElement("GLWidget");
+    root.setAttribute("rotate",rotate);
 
 
     QDomElement eyes=doc->createElement("eyes");
@@ -70,11 +70,16 @@ void GLWidget::from_xml(QDomElement root)
 {
     initialize();
     clear();
-
+    if(root.hasAttribute("rotate"))
+    {
+        rotate=root.attribute("rotate").toInt();
+    }
     QDomNode n = root.firstChild();
     while(!n.isNull())
     {
-        QDomElement e = n.toElement(); // try to convert the node to an element.
+        QDomElement e = n.toElement(); // try to convert the node to an element(GLWidget)
+
+
         if(!e.isNull())
         {
             QString s=e.tagName();

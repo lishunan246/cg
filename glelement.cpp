@@ -21,6 +21,12 @@ GLElement *GLElement::from_xml(QDomElement dom)
     if(dom.tagName()=="teapot")
     {
         GLElement* p=new GLElement();
+
+        if(dom.hasAttribute("size"))
+        {
+            p->size=dom.attribute("size").toDouble();
+        }
+
         QDomNode node=dom.firstChild();
         while(!node.isNull())
         {
