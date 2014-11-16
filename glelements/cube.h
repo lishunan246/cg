@@ -9,7 +9,6 @@ public:
     Cube();
     void draw();
     void draw_current();
-    void from_xml(QDomElement dom);
     ~Cube();
 };
 

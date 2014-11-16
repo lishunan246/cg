@@ -8,6 +8,8 @@
 class GLElement
 {
 protected:
+    const static float current_scale=1.02;
+
     GLfloat color[4];
     GLfloat position[3];
     GLdouble size;
@@ -17,7 +19,7 @@ public:
 
     GLElement();
 
-    virtual void from_xml(QDomElement dom) =0;
+    virtual void from_xml(QDomElement dom);
     //draw the element
     virtual void draw()=0;
     //draw the element when it is selected
