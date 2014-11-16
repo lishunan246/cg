@@ -7,7 +7,7 @@
 
 class GLElement
 {
-private:
+protected:
     GLfloat color[4];
     GLfloat position[3];
     GLdouble size;
@@ -17,18 +17,18 @@ public:
 
     GLElement();
 
-    static GLElement* from_xml(QDomElement dom) ;
+    virtual void from_xml(QDomElement dom) =0;
     //draw the element
-    void draw();
+    virtual void draw()=0;
     //draw the element when it is selected
-    void draw_current();
+    virtual void draw_current()=0;
     QListWidgetItem* getlistltem();
     void set_color(GLfloat* color4);
     void set_position(GLfloat* position3);
     void set_size(GLdouble s);
 
     QDomElement to_xml(QDomDocument* doc);
-    ~GLElement();
+    virtual ~GLElement();
 };
 
 #endif // GLELEMENT_H

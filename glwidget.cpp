@@ -9,6 +9,7 @@
 #include <QtXml>
 #include <QDomDocument>
 
+
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
@@ -122,9 +123,18 @@ void GLWidget::from_xml(QDomElement root)
 
                     if(!element.isNull())
                     {
-                        GLElement* newobject=GLElement::from_xml(element);
-
-                        add_element(newobject);
+                        if(element.tagName()=="teapot")
+                        {
+                            teapot* t= new teapot();
+                            t->from_xml(element);
+                            add_element(t);
+                        }
+                        else
+                        {
+                            Cube* c=new Cube();
+                            c->from_xml(element);
+                            add_element(c);
+                        }
                     }
 
                     node=node.nextSibling();
@@ -308,8 +318,14 @@ void GLWidget::add_element(GLElement *e)
 
 void GLWidget::add_teapot()
 {
-    GLElement* teapot=new GLElement();
-    add_element(teapot);
+    teapot* t=new teapot();
+    add_element(t);
+}
+
+void GLWidget::add_cube()
+{
+    Cube* cube=new Cube();
+    add_element(cube);
 }
 
 void GLWidget::delete_current()

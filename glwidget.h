@@ -6,6 +6,7 @@
 #include <GL/glut.h>
 #include <QTimer>
 #include <vector>
+#include "glelements.h"
 
 class GLWidget : public QGLWidget
 {
@@ -30,6 +31,7 @@ public slots:
     void screenshot();
     void add_element(GLElement* e);
     void add_teapot();
+    void add_cube();
     void delete_current();
     void delete_element(GLElement* e);
     void savetofile();

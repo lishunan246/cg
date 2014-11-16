@@ -127,6 +127,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionTeapot"/>
+   <addaction name="actionCube"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -260,6 +261,11 @@
     <string>Ctrl+O</string>
    </property>
   </action>
+  <action name="actionCube">
+   <property name="text">
+    <string>Cube</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -286,6 +292,7 @@
     <slot>savetofile()</slot>
     <slot>loadfile()</slot>
     <slot>delete_current()</slot>
+    <slot>add_cube()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -584,6 +591,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>loadfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCube</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_cube()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

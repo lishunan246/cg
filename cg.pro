@@ -15,11 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    glelement.cpp
+    glelement.cpp \
+    glelements/cube.cpp \
+    glelements/teapot.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
-    glelement.h
+    glelement.h \
+    glelements/cube.h \
+    glelements.h \
+    glelements/teapot.h
 
 FORMS    += mainwindow.ui
 
