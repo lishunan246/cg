@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     glwidget.cpp \
     glelement.cpp \
     glelements/cube.cpp \
-    glelements/teapot.cpp
+    glelements/teapot.cpp \
+    glelements/sphere.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     glelement.h \
     glelements/cube.h \
     glelements.h \
-    glelements/teapot.h
+    glelements/teapot.h \
+    glelements/sphere.h
 
 FORMS    += mainwindow.ui
 

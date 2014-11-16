@@ -3,5 +3,6 @@
 
 #include "glelements/cube.h"
 #include "glelements/teapot.h"
+#include "glelements/sphere.h"
 
 #endif // GLELEMENTS_H

@@ -121,11 +121,17 @@ void GLWidget::from_xml(QDomElement root)
                             t->from_xml(element);
                             add_element(t);
                         }
-                        else
+                        else if(element.tagName()=="cube")
                         {
                             Cube* c=new Cube();
                             c->from_xml(element);
                             add_element(c);
+                        }
+                        else if(element.tagName()=="sphere")
+                        {
+                            Sphere* s=new Sphere();
+                            s->from_xml(element);
+                            add_element(s);
                         }
                     }
 
@@ -262,7 +268,7 @@ void GLWidget::set_scale()
     for(int i=0;i<3;i++)
     {
         double t = QInputDialog::getDouble(0, tr("Input scale value"),
-                tr("Value:"), 0.00, -10000, 10000, 2, &ok);
+                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
         if (ok)
             temp[i]=(float)t;
         else
@@ -342,6 +348,12 @@ void GLWidget::add_cube()
 {
     Cube* cube=new Cube();
     add_element(cube);
+}
+
+void GLWidget::add_sphere()
+{
+    Sphere* sphere=new Sphere();
+    add_element(sphere);
 }
 
 void GLWidget::delete_current()

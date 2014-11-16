@@ -43,6 +43,7 @@ public slots:
     void add_element(GLElement* e);
     void add_teapot();
     void add_cube();
+    void add_sphere();
     void delete_current();
     void delete_element(GLElement* e);
     void savetofile();
