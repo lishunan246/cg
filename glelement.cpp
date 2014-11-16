@@ -11,6 +11,7 @@ GLElement::GLElement()
     for(int i=0;i<3;i++)
     {
         position[i]=0.0f;
+        scale[i]=1.0f;
     }
 
     list_ltem =new QListWidgetItem(type);
@@ -34,6 +35,14 @@ void GLElement::set_position(GLfloat *position3)
     for(int i=0;i<3;i++)
     {
         this->position[i]=*(position3+i);
+    }
+}
+
+void GLElement::set_scale(GLfloat *scale3)
+{
+    for(int i=0;i<3;i++)
+    {
+        this->scale[i]=*(scale3+i);
     }
 }
 
@@ -80,6 +89,19 @@ void GLElement::from_xml(QDomElement dom)
                 this->color[i]=v.toDouble();
             }
         }
+        else if(element.tagName()=="scales")
+        {
+            QDomNode nodes[3];
+            nodes[0]=node.firstChild();
+            nodes[1]=nodes[0].nextSibling();
+            nodes[2]=nodes[1].nextSibling();
+            for(int i=0;i<3;i++)
+            {
+                QDomElement e=nodes[i].toElement();
+                QString v=e.attribute("value");
+                this->scale[i]=v.toDouble();
+            }
+        }
         else
         {
 
@@ -103,6 +125,17 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
         node.setAttribute("index",QString::number(i));
         node.setAttribute("value",position[i]);
         positions.appendChild(node);
+    }
+
+    QDomElement scales=doc->createElement("scales");
+    element.appendChild(scales);
+
+    for(int i=0;i<3;i++)
+    {
+        QDomElement node=doc->createElement("scale");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",scale[i]);
+        scales.appendChild(node);
     }
 
     QDomElement colors=doc->createElement("colors");

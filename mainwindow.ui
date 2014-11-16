@@ -98,6 +98,7 @@
     </property>
     <addaction name="actionSet_color"/>
     <addaction name="actionSet_position"/>
+    <addaction name="actionSet_scale"/>
     <addaction name="actionSet_size"/>
     <addaction name="actionDelete"/>
    </widget>
@@ -266,6 +267,11 @@
     <string>Cube</string>
    </property>
   </action>
+  <action name="actionSet_scale">
+   <property name="text">
+    <string>Set scale</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -293,6 +299,7 @@
     <slot>loadfile()</slot>
     <slot>delete_current()</slot>
     <slot>add_cube()</slot>
+    <slot>set_scale()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -607,6 +614,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>add_cube()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_scale</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_scale()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

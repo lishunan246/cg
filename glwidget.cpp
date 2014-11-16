@@ -248,6 +248,30 @@ void GLWidget::set_position()
     updateGL();
 }
 
+void GLWidget::set_scale()
+{
+    bool ok;
+    GLfloat temp[4];
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+    for(int i=0;i<3;i++)
+    {
+        double t = QInputDialog::getDouble(0, tr("Input scale value"),
+                tr("Value:"), 0.00, -10000, 10000, 2, &ok);
+        if (ok)
+            temp[i]=(float)t;
+        else
+            return;
+    }
+    currentElement->set_scale(temp);
+    updateGL();
+}
+
 void GLWidget::set_size()
 {
     bool ok;

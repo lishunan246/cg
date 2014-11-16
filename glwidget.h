@@ -36,6 +36,7 @@ public slots:
     void zoom_out();
     void set_color();
     void set_position();
+    void set_scale();
     void set_size();
     void set_current(QListWidgetItem* l);
     void screenshot();

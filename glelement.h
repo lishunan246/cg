@@ -12,6 +12,7 @@ protected:
 
     GLfloat color[4];
     GLfloat position[3];
+    GLfloat scale[3];
     GLdouble size;
     QString type;
     QListWidgetItem* list_ltem;
@@ -27,6 +28,7 @@ public:
     QListWidgetItem* getlistltem();
     void set_color(GLfloat* color4);
     void set_position(GLfloat* position3);
+    void set_scale(GLfloat* scale3);
     void set_size(GLdouble s);
 
     QDomElement to_xml(QDomDocument* doc);
