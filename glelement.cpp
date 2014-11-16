@@ -1,5 +1,5 @@
 #include "glelement.h"
-#include <QObject>
+
 GLElement::GLElement()
 {
     type="teapot";

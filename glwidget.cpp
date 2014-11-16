@@ -1,13 +1,5 @@
 #include "glwidget.h"
-#include <GL/glu.h>
-#include <QInputDialog>
-#include <QImage>
-#include <QDateTime>
-#include "glelement.h"
-#include "mainwindow.h"
-#include <QFile>
-#include <QtXml>
-#include <QDomDocument>
+
 
 
 GLWidget::GLWidget(QWidget *parent) :
@@ -125,7 +117,7 @@ void GLWidget::from_xml(QDomElement root)
                     {
                         if(element.tagName()=="teapot")
                         {
-                            teapot* t= new teapot();
+                            Teapot* t= new Teapot();
                             t->from_xml(element);
                             add_element(t);
                         }
@@ -318,7 +310,7 @@ void GLWidget::add_element(GLElement *e)
 
 void GLWidget::add_teapot()
 {
-    teapot* t=new teapot();
+    Teapot* t=new Teapot();
     add_element(t);
 }
 

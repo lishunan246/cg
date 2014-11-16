@@ -1,15 +1,15 @@
 #ifndef TEAPOT_H
 #define TEAPOT_H
 #include "glelement.h"
-class teapot : public GLElement
+class Teapot : public GLElement
 {
 public:
-    teapot();
+    Teapot();
     void draw();
     void draw_current();
     void from_xml(QDomElement dom);
 
-    ~teapot();
+    ~Teapot();
 };
 
 #endif // TEAPOT_H

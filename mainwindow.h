@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QListWidgetItem>
+#include <string>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;

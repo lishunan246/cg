@@ -2,11 +2,21 @@
 #define GLWIDGET_H
 
 #include <QGLWidget>
-#include "glelement.h"
 #include <GL/glut.h>
 #include <QTimer>
 #include <vector>
+#include <GL/glu.h>
+#include <QInputDialog>
+#include <QImage>
+#include <QDateTime>
+#include <QFile>
+#include <QtXml>
+#include <QDomDocument>
+
+#include "glelement.h"
+#include "mainwindow.h"
 #include "glelements.h"
+
 
 class GLWidget : public QGLWidget
 {

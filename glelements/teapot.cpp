@@ -1,13 +1,13 @@
 #include "teapot.h"
 
-teapot::teapot()
+Teapot::Teapot()
 {
     type="teapot";
     delete list_ltem;
     list_ltem =new QListWidgetItem(type);
 }
 
-void teapot::draw()
+void Teapot::draw()
 {
     glPushMatrix();
         glTranslatef(position[0],position[1],position[2]);
@@ -19,7 +19,7 @@ void teapot::draw()
         glPopMatrix();
 }
 
-void teapot::draw_current()
+void Teapot::draw_current()
 {
     glPushMatrix();
         glTranslatef(position[0],position[1],position[2]);
@@ -31,7 +31,7 @@ void teapot::draw_current()
         glPopMatrix();
 }
 
-void teapot::from_xml(QDomElement dom)
+void Teapot::from_xml(QDomElement dom)
 {
     if(dom.tagName()=="teapot")
     {
@@ -86,7 +86,7 @@ void teapot::from_xml(QDomElement dom)
 
 }
 
-teapot::~teapot()
+Teapot::~Teapot()
 {
 
 }
