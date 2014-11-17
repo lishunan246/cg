@@ -1,8 +1,11 @@
 #include "glelement.h"
 
+int GLElement::counter=0;
+
 GLElement::GLElement()
 {
-    type="teapot";
+    counter++;
+    type="GLElement";
     size=1;
     for(int i=0;i<4;i++)
     {
@@ -14,7 +17,7 @@ GLElement::GLElement()
         scale[i]=1.0f;
     }
 
-    list_ltem =new QListWidgetItem(type);
+    list_ltem =new QListWidgetItem(type+QString::number(counter));
 }
 
 QListWidgetItem* GLElement::getlistltem()
@@ -154,4 +157,5 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
 GLElement::~GLElement()
 {
     delete list_ltem;
+    counter--;
 }

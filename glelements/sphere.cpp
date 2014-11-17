@@ -1,10 +1,12 @@
 #include "sphere.h"
-
+int Sphere::counter=0;
 Sphere::Sphere()
 {
+    counter++;
     type="sphere";
+    name=type+QString::number(counter);
     delete list_ltem;
-    list_ltem =new QListWidgetItem(type);
+    list_ltem =new QListWidgetItem(name);
 }
 
 void Sphere::draw()
@@ -36,5 +38,5 @@ void Sphere::draw_current()
 
 Sphere::~Sphere()
 {
-
+    counter--;
 }

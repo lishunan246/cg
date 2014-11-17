@@ -1,10 +1,13 @@
 #include "teapot.h"
 
+int Teapot::counter=0;
 Teapot::Teapot()
 {
+    counter++;
     type="teapot";
+    name=type+QString::number(counter);
     delete list_ltem;
-    list_ltem =new QListWidgetItem(type);
+    list_ltem =new QListWidgetItem(name);
 }
 
 void Teapot::draw()
@@ -38,5 +41,5 @@ void Teapot::draw_current()
 
 Teapot::~Teapot()
 {
-
+    counter--;
 }

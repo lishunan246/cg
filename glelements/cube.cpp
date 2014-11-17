@@ -1,10 +1,14 @@
 #include "cube.h"
 
+int Cube::counter=0;
+
 Cube::Cube()
 {
+    counter++;
     type="cube";
+    name=type+QString::number(counter);
     delete list_ltem;
-    list_ltem =new QListWidgetItem(type);
+    list_ltem =new QListWidgetItem(name);
 }
 
 void Cube::draw()
@@ -34,5 +38,5 @@ void Cube::draw_current()
 
 Cube::~Cube()
 {
-
+    counter--;
 }

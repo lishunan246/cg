@@ -8,13 +8,14 @@
 class GLElement
 {
 protected:
+    static int counter;
     const static float current_scale=1.02;
 
     GLfloat color[4];
     GLfloat position[3];
     GLfloat scale[3];
     GLdouble size;
-    QString type;
+    QString type,name;
     QListWidgetItem* list_ltem;
 public:
 

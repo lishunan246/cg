@@ -3,6 +3,8 @@
 #include "glelement.h"
 class Teapot : public GLElement
 {
+private:
+    static int counter;
 public:
     Teapot();
     void draw();

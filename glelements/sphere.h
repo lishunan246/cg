@@ -3,6 +3,8 @@
 #include "glelement.h"
 class Sphere : public GLElement
 {
+private:
+    static int counter;
 public:
     Sphere();
     void draw();
