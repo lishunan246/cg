@@ -18,6 +18,31 @@ void GLWidget::initialize()
     rotate=0;
 }
 
+void GLWidget::get_OGLPos(int x, int y)
+{
+    GLint viewport[4];                  // Where The Viewport Values Will Be Stored
+    glGetIntegerv(GL_VIEWPORT, viewport);           // Retrieves The Viewport Values (X, Y, Width, Height)
+
+    GLdouble modelview[16];                 // Where The 16 Doubles Of The Modelview Matrix Are To Be Stored
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);       // Retrieve The Modelview Matrix
+
+    GLdouble projection[16];                // Where The 16 Doubles Of The Projection Matrix Are To Be Stored
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);     // Retrieve The Projection Matrix
+
+    GLfloat winX, winY, winZ;               // Holds Our X, Y and Z Coordinates
+    winX=(float)x;
+    winY=(float)y;
+    winY=(float)viewport[3]-winY;
+
+    glReadPixels(winX, winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+    GLdouble posX, posY, posZ;
+
+    gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+
+    return;
+}
+
 
 QDomElement GLWidget::to_xml(QDomDocument *doc)
 {
@@ -509,6 +534,19 @@ void GLWidget::resizeGL(int w, int h)
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+}
+
+void GLWidget::mouseDoubleClickEvent(QMouseEvent * mouse)
+{
+    int x=mouse->x();
+    int y=mouse->y();
+    QString s=QString::number(x);
+    QString b=QString::number(y);
+
+
+    get_OGLPos(x,y);
+
+    MainWindow::alert(s+", "+b);
 }
 
 

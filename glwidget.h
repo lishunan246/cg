@@ -12,6 +12,7 @@
 #include <QFile>
 #include <QtXml>
 #include <QDomDocument>
+#include <QMouseEvent>
 
 #include "glelement.h"
 #include "mainwindow.h"
@@ -59,6 +60,7 @@ protected:
     void initializeGL();
     void paintGL();
     void resizeGL(int w,int h);
+    void mouseDoubleClickEvent(QMouseEvent *mouse);
 protected:
     QTimer timer;
 private:
@@ -68,6 +70,7 @@ private:
     int rotate;
     std::vector<GLElement*> v;
     void initialize();
+    void get_OGLPos(int x,int y);
 };
 
 #endif // GLWIDGET_H
