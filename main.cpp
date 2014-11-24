@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <GL/glut.h>
-
+//lala
 int main(int argc, char *argv[])
 {
     glutInit(&argc,argv);
