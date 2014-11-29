@@ -19,6 +19,7 @@ protected:
     GLfloat position[3];
     GLfloat scale[3];
     GLdouble size;
+    int shininess;
     GLdouble rotate_angle,rotate_speed;
     QString type,name;
     QListWidgetItem* list_ltem;
@@ -42,6 +43,7 @@ public:
     void set_position(GLfloat* position3);
     void set_scale(GLfloat* scale3);
     void set_size(GLdouble s);
+    void set_shininess(int s);
     void set_rotate_angle(double angle);
     void set_rotate_speed(double speed);
 

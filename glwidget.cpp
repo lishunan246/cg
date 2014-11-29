@@ -319,6 +319,27 @@ void GLWidget::set_scale()
     updateGL();
 }
 
+void GLWidget::set_shininess()
+{
+    bool ok;
+    int temp;
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+   int t = QInputDialog::getInt(0, tr("Input shininess value"),
+                tr("Value:"), 0, 0, 128, 1, &ok);
+   if (ok)
+       temp=t;
+   else
+       return;
+    currentElement->set_shininess(temp);
+    updateGL();
+}
+
 void GLWidget::set_size()
 {
     bool ok;

@@ -40,7 +40,9 @@ public slots:
     void set_color();
     void set_position();
     void set_scale();
+    void set_shininess();
     void set_size();
+
     void set_rotate_angle();
     void set_rotate_speed();
     void set_current(QListWidgetItem* l);

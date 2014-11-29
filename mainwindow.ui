@@ -101,10 +101,12 @@
     <addaction name="actionSet_position"/>
     <addaction name="actionSet_scale"/>
     <addaction name="actionSet_size"/>
-    <addaction name="actionDelete"/>
     <addaction name="actionSet_texture"/>
     <addaction name="actionSet_rotate_angle"/>
     <addaction name="actionSet_rotate_speed"/>
+    <addaction name="actionSet_shininess"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuTool">
     <property name="title">
@@ -320,6 +322,11 @@
     <string>Set rotate speed</string>
    </property>
   </action>
+  <action name="actionSet_shininess">
+   <property name="text">
+    <string>Set shininess</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -355,6 +362,7 @@
     <slot>add_frustum()</slot>
     <slot>set_rotate_angle()</slot>
     <slot>set_rotate_speed()</slot>
+    <slot>set_shininess()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -797,6 +805,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>set_rotate_speed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_shininess</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_shininess()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

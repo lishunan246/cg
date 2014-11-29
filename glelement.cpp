@@ -14,6 +14,7 @@ GLElement::GLElement()
     counter++;
     type="GLElement";
     size=1.0;
+    shininess=0;
     rotate_angle=0.0;
     rotate_speed=0.0;
     for(int i=0;i<4;i++)
@@ -85,6 +86,11 @@ void GLElement::set_size(GLdouble s)
     size=s;
 }
 
+void GLElement::set_shininess(int s)
+{
+    shininess=s;
+}
+
 void GLElement::set_rotate_angle(double angle)
 {
     rotate_angle=angle;
@@ -110,6 +116,11 @@ void GLElement::from_xml(QDomElement dom)
     if(dom.hasAttribute("rotate_angle"))
     {
         this->rotate_angle=dom.attribute("rotate_angle").toDouble();
+    }
+
+    if(dom.hasAttribute("shininess"))
+    {
+        this->shininess=dom.attribute("shininess").toDouble();
     }
 
     QDomNode node=dom.firstChild();
@@ -243,6 +254,7 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
     element.setAttribute("size",size);
     element.setAttribute("rotate_angle",rotate_angle);
     element.setAttribute("rotate_speed",rotate_speed);
+    element.setAttribute("shininess",shininess);
 
     QDomElement positions=doc->createElement("positions");
     element.appendChild(positions);
