@@ -18,7 +18,7 @@
 #include "mainwindow.h"
 #include "glelements.h"
 #include "objhandler.h"
-
+#include "ui/colordialog.h"
 
 class GLWidget : public QGLWidget
 {

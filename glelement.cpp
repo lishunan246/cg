@@ -2,6 +2,13 @@
 
 int GLElement::counter=0;
 
+void GLElement::set_glMaterial()
+{
+    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,specular_color);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,ambient_color);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diffuse_color);
+}
+
 GLElement::GLElement()
 {
     counter++;
@@ -9,6 +16,9 @@ GLElement::GLElement()
     size=1;
     for(int i=0;i<4;i++)
     {
+        diffuse_color[i]=1.0f;
+        ambient_color[i]=1.0f;
+        specular_color[i]=1.0f;
         color[i]=1.0f;
     }
     for(int i=0;i<3;i++)
@@ -25,13 +35,36 @@ QListWidgetItem* GLElement::getlistltem()
     return list_ltem;
 }
 
-void GLElement::set_color(GLfloat *color4)
+void GLElement::set_color(GLfloat *color4, bool is_diffuse, bool is_specular, bool is_ambient)
 {
     for(int i=0;i<4;i++)
     {
         this->color[i]=*(color4+i);
     }
+    if(is_diffuse)
+    {
+        for(int i=0;i<4;i++)
+        {
+            this->diffuse_color[i]=*(color4+i);
+        }
+    }
+    if(is_specular)
+    {
+        for(int i=0;i<4;i++)
+        {
+            this->specular_color[i]=*(color4+i);
+        }
+    }
+    if(is_ambient)
+    {
+        for(int i=0;i<4;i++)
+        {
+            this->ambient_color[i]=*(color4+i);
+        }
+    }
 }
+
+
 
 void GLElement::set_position(GLfloat *position3)
 {
@@ -89,7 +122,51 @@ void GLElement::from_xml(QDomElement dom)
             {
                 QDomElement e=nodes[i].toElement();
                 QString v=e.attribute("value");
-                this->color[i]=v.toDouble();
+                this->ambient_color[i]=v.toDouble();
+                this->diffuse_color[i]=v.toDouble();
+                this->specular_color[i]=v.toDouble();
+            }
+        }
+        else if(element.tagName()=="ambient_colors")
+        {
+            QDomNode nodes[3];
+            nodes[0]=node.firstChild();
+            nodes[1]=nodes[0].nextSibling();
+            nodes[2]=nodes[1].nextSibling();
+            nodes[3]=nodes[2].nextSibling();
+            for(int i=0;i<4;i++)
+            {
+                QDomElement e=nodes[i].toElement();
+                QString v=e.attribute("value");
+                this->ambient_color[i]=v.toDouble();
+            }
+        }
+        else if(element.tagName()=="diffuse_colors")
+        {
+            QDomNode nodes[3];
+            nodes[0]=node.firstChild();
+            nodes[1]=nodes[0].nextSibling();
+            nodes[2]=nodes[1].nextSibling();
+            nodes[3]=nodes[2].nextSibling();
+            for(int i=0;i<4;i++)
+            {
+                QDomElement e=nodes[i].toElement();
+                QString v=e.attribute("value");
+                this->diffuse_color[i]=v.toDouble();
+            }
+        }
+        else if(element.tagName()=="specular_colors")
+        {
+            QDomNode nodes[3];
+            nodes[0]=node.firstChild();
+            nodes[1]=nodes[0].nextSibling();
+            nodes[2]=nodes[1].nextSibling();
+            nodes[3]=nodes[2].nextSibling();
+            for(int i=0;i<4;i++)
+            {
+                QDomElement e=nodes[i].toElement();
+                QString v=e.attribute("value");
+                this->specular_color[i]=v.toDouble();
             }
         }
         else if(element.tagName()=="scales")
@@ -146,9 +223,25 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
 
     for(int i=0;i<4;i++)
     {
-        QDomElement node=doc->createElement("color");
+        QDomElement node=doc->createElement("specular_color");
         node.setAttribute("index",QString::number(i));
-        node.setAttribute("value",color[i]);
+        node.setAttribute("value",specular_color[i]);
+        colors.appendChild(node);
+    }
+
+    for(int i=0;i<4;i++)
+    {
+        QDomElement node=doc->createElement("diffuse_color");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",diffuse_color[i]);
+        colors.appendChild(node);
+    }
+
+    for(int i=0;i<4;i++)
+    {
+        QDomElement node=doc->createElement("ambient_color");
+        node.setAttribute("index",QString::number(i));
+        node.setAttribute("value",ambient_color[i]);
         colors.appendChild(node);
     }
     return element;

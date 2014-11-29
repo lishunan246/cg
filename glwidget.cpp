@@ -252,6 +252,12 @@ void GLWidget::set_color()
        return;
     }
 
+    ColorDialog dialog;
+    dialog.setCurrentElement(currentElement);
+    dialog.exec();
+    \
+    return;
+
     for(int i=0;i<4;i++)
     {
         double color = QInputDialog::getDouble(0, tr("Input color value"),

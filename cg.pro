@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     glelements/cube.cpp \
     glelements/teapot.cpp \
     glelements/sphere.cpp \
-    objhandler.cpp
+    objhandler.cpp \
+    ui/colordialog.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -28,8 +29,10 @@ HEADERS  += mainwindow.h \
     glelements.h \
     glelements/teapot.h \
     glelements/sphere.h \
-    objhandler.h
+    objhandler.h \
+    ui/colordialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    ui/colordialog.ui
 
 LIBS +=-lglut -lGLU

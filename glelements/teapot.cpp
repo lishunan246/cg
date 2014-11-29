@@ -14,7 +14,7 @@ void Teapot::draw()
 {
     glPushMatrix();
         glTranslatef(position[0],position[1],position[2]);
-        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,color);
+        set_glMaterial();
        // glScalef(scaleX,scaleY,scaleZ);
         glScalef(scale[0],scale[1],scale[2]);
         glutSolidTeapot(size);
@@ -27,7 +27,7 @@ void Teapot::draw_current()
 {
     glPushMatrix();
         glTranslatef(position[0],position[1],position[2]);
-        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,color);
+        set_glMaterial();
         glScalef(current_scale,current_scale,current_scale);
         glScalef(scale[0],scale[1],scale[2]);// glScalef(scaleX,scaleY,scaleZ);
         glutWireTeapot(size);
