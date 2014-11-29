@@ -40,6 +40,11 @@ void GLWidget::get_OGLPos(int x, int y)
 
     gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
 
+    QString q1=QString::number(posX);
+    QString q2=QString::number(posY);
+    QString q3=QString::number(posZ);
+
+    MainWindow::alert(q1+", "+q2+","+q3);
     return;
 }
 
@@ -229,6 +234,11 @@ void GLWidget::zoom_out()
     thing[2]+=0.5;
 
     updateGL();
+}
+
+void GLWidget::load_obj()
+{
+    MainWindow::alert("1");
 }
 
 void GLWidget::set_color()

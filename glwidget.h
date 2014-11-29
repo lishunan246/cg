@@ -17,6 +17,7 @@
 #include "glelement.h"
 #include "mainwindow.h"
 #include "glelements.h"
+#include "objhandler.h"
 
 
 class GLWidget : public QGLWidget
@@ -35,6 +36,7 @@ public slots:
     void rotate_right();
     void zoom_in();
     void zoom_out();
+    void load_obj();
     void set_color();
     void set_position();
     void set_scale();

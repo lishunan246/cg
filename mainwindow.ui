@@ -75,6 +75,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionLoad_obj_file"/>
     <addaction name="actionSave"/>
     <addaction name="actionClear"/>
     <addaction name="actionQuit"/>
@@ -101,6 +102,7 @@
     <addaction name="actionSet_scale"/>
     <addaction name="actionSet_size"/>
     <addaction name="actionDelete"/>
+    <addaction name="actionSet_texture"/>
    </widget>
    <widget class="QMenu" name="menuTool">
     <property name="title">
@@ -130,6 +132,7 @@
    <addaction name="actionTeapot"/>
    <addaction name="actionCube"/>
    <addaction name="actionSphere"/>
+   <addaction name="actionCone"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -278,6 +281,21 @@
     <string>Sphere</string>
    </property>
   </action>
+  <action name="actionSet_texture">
+   <property name="text">
+    <string>Set texture</string>
+   </property>
+  </action>
+  <action name="actionCone">
+   <property name="text">
+    <string>Cone</string>
+   </property>
+  </action>
+  <action name="actionLoad_obj_file">
+   <property name="text">
+    <string>Load .obj file</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -307,6 +325,7 @@
     <slot>add_cube()</slot>
     <slot>set_scale()</slot>
     <slot>add_sphere()</slot>
+    <slot>load_obj()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -653,6 +672,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>add_sphere()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLoad_obj_file</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>load_obj()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     glelement.cpp \
     glelements/cube.cpp \
     glelements/teapot.cpp \
-    glelements/sphere.cpp
+    glelements/sphere.cpp \
+    objhandler.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -26,7 +27,8 @@ HEADERS  += mainwindow.h \
     glelements/cube.h \
     glelements.h \
     glelements/teapot.h \
-    glelements/sphere.h
+    glelements/sphere.h \
+    objhandler.h
 
 FORMS    += mainwindow.ui
 
