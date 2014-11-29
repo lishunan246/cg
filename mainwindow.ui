@@ -103,6 +103,8 @@
     <addaction name="actionSet_size"/>
     <addaction name="actionDelete"/>
     <addaction name="actionSet_texture"/>
+    <addaction name="actionSet_rotate_angle"/>
+    <addaction name="actionSet_rotate_speed"/>
    </widget>
    <widget class="QMenu" name="menuTool">
     <property name="title">
@@ -308,6 +310,16 @@
     <string>Frustum</string>
    </property>
   </action>
+  <action name="actionSet_rotate_angle">
+   <property name="text">
+    <string>Set rotate angle</string>
+   </property>
+  </action>
+  <action name="actionSet_rotate_speed">
+   <property name="text">
+    <string>Set rotate speed</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -341,6 +353,8 @@
     <slot>add_cone()</slot>
     <slot>add_prism()</slot>
     <slot>add_frustum()</slot>
+    <slot>set_rotate_angle()</slot>
+    <slot>set_rotate_speed()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -751,6 +765,38 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>add_frustum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_rotate_angle</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_rotate_angle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_rotate_speed</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_rotate_speed()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

@@ -340,6 +340,48 @@ void GLWidget::set_size()
     updateGL();
 }
 
+void GLWidget::set_rotate_angle()
+{
+    bool ok;
+    GLdouble temp;
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+   double t = QInputDialog::getDouble(0, tr("Input rotate angle"),
+                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
+   if (ok)
+       temp=t;
+   else
+       return;
+    currentElement->set_rotate_angle(temp);
+    updateGL();
+}
+
+void GLWidget::set_rotate_speed()
+{
+    bool ok;
+    GLdouble temp;
+
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+
+   double t = QInputDialog::getDouble(0, tr("Input rotate speed"),
+                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
+   if (ok)
+       temp=t;
+   else
+       return;
+    currentElement->set_rotate_speed(temp);
+    updateGL();
+}
+
 void GLWidget::set_current(QListWidgetItem *l)
 {
     int found=0;

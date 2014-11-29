@@ -13,7 +13,9 @@ GLElement::GLElement()
 {
     counter++;
     type="GLElement";
-    size=1;
+    size=1.0;
+    rotate_angle=0.0;
+    rotate_speed=0.0;
     for(int i=0;i<4;i++)
     {
         diffuse_color[i]=1.0f;
@@ -83,11 +85,31 @@ void GLElement::set_size(GLdouble s)
     size=s;
 }
 
+void GLElement::set_rotate_angle(double angle)
+{
+    rotate_angle=angle;
+}
+
+void GLElement::set_rotate_speed(double speed)
+{
+    rotate_speed=speed;
+}
+
 void GLElement::from_xml(QDomElement dom)
 {
     if(dom.hasAttribute("size"))
     {
         this->size=dom.attribute("size").toDouble();
+    }
+
+    if(dom.hasAttribute("rotate_speed"))
+    {
+        this->rotate_speed=dom.attribute("rotate_speed").toDouble();
+    }
+
+    if(dom.hasAttribute("rotate_angle"))
+    {
+        this->rotate_angle=dom.attribute("rotate_angle").toDouble();
     }
 
     QDomNode node=dom.firstChild();
@@ -193,6 +215,8 @@ void GLElement::draw()
     set_glMaterial();
 
     glScalef(scale[0],scale[1],scale[2]);
+    rotate_angle+=rotate_speed;
+    glRotated(rotate_angle,0,1,0);
     just_draw_yourself(size,false);
 
     glPopMatrix();
@@ -205,6 +229,8 @@ void GLElement::draw_current()
     set_glMaterial();
 
     glScalef(scale[0],scale[1],scale[2]);
+    rotate_angle+=rotate_speed;
+    glRotated(rotate_angle,0,1,0);
     just_draw_yourself(size,true);
 
     glPopMatrix();
@@ -215,6 +241,8 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
 {
     QDomElement element=doc->createElement(type);
     element.setAttribute("size",size);
+    element.setAttribute("rotate_angle",rotate_angle);
+    element.setAttribute("rotate_speed",rotate_speed);
 
     QDomElement positions=doc->createElement("positions");
     element.appendChild(positions);

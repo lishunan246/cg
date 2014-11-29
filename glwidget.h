@@ -41,6 +41,8 @@ public slots:
     void set_position();
     void set_scale();
     void set_size();
+    void set_rotate_angle();
+    void set_rotate_speed();
     void set_current(QListWidgetItem* l);
     void screenshot();
     void add_element(GLElement* e);
