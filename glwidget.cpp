@@ -391,6 +391,21 @@ void GLWidget::add_sphere()
     add_element(sphere);
 }
 
+void GLWidget::add_cone()
+{
+    MainWindow::alert("CONE");
+}
+
+void GLWidget::add_prism()
+{
+    MainWindow::alert("PRISM");
+}
+
+void GLWidget::add_frustum()
+{
+    MainWindow::alert("FRUSTUM");
+}
+
 void GLWidget::delete_current()
 {
     if(currentElement==NULL)
@@ -494,6 +509,7 @@ void GLWidget::clear()
             delete *it;
     }
     v.clear();
+    initialize();
 }
 
 void GLWidget::initializeGL()

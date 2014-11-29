@@ -129,10 +129,12 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionTeapot"/>
    <addaction name="actionCube"/>
    <addaction name="actionSphere"/>
    <addaction name="actionCone"/>
+   <addaction name="actionPrism"/>
+   <addaction name="actionFrustum"/>
+   <addaction name="actionTeapot"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -294,6 +296,16 @@
   <action name="actionLoad_obj_file">
    <property name="text">
     <string>Load .obj file</string>
+   </property>
+  </action>
+  <action name="actionPrism">
+   <property name="text">
+    <string>Prism</string>
+   </property>
+  </action>
+  <action name="actionFrustum">
+   <property name="text">
+    <string>Frustum</string>
    </property>
   </action>
  </widget>
