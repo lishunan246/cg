@@ -9,8 +9,9 @@ private:
     static int counter;
 public:
     Cube();
-    void draw();
-    void draw_current();
+//    void draw();
+//    void draw_current();
+    void just_draw_yourself(double size,bool isCurrent);
     ~Cube();
 };
 

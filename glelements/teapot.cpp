@@ -10,31 +10,41 @@ Teapot::Teapot()
     list_ltem =new QListWidgetItem(name);
 }
 
-void Teapot::draw()
-{
-    glPushMatrix();
-        glTranslatef(position[0],position[1],position[2]);
-        set_glMaterial();
-       // glScalef(scaleX,scaleY,scaleZ);
-        glScalef(scale[0],scale[1],scale[2]);
-        glutSolidTeapot(size);
-        //glutSolidCube(1);
+//void Teapot::draw()
+//{
+//    glPushMatrix();
+//        glTranslatef(position[0],position[1],position[2]);
+//        set_glMaterial();
+//       // glScalef(scaleX,scaleY,scaleZ);
+//        glScalef(scale[0],scale[1],scale[2]);
+//        glutSolidTeapot(size);
+//        //glutSolidCube(1);
 
-        glPopMatrix();
-}
+//        glPopMatrix();
+//}
 
-void Teapot::draw_current()
+//void Teapot::draw_current()
+//{
+//    glPushMatrix();
+//        glTranslatef(position[0],position[1],position[2]);
+//        set_glMaterial();
+//        glScalef(current_scale,current_scale,current_scale);
+//        glScalef(scale[0],scale[1],scale[2]);// glScalef(scaleX,scaleY,scaleZ);
+//        glutWireTeapot(size);
+//        //glutSolidCube(1);
+
+//        glPopMatrix();
+//        draw();
+//}
+
+void Teapot::just_draw_yourself(double size, bool isCurrent)
 {
-    glPushMatrix();
-        glTranslatef(position[0],position[1],position[2]);
-        set_glMaterial();
+    glutSolidTeapot(size);
+    if(isCurrent)
+    {
         glScalef(current_scale,current_scale,current_scale);
-        glScalef(scale[0],scale[1],scale[2]);// glScalef(scaleX,scaleY,scaleZ);
         glutWireTeapot(size);
-        //glutSolidCube(1);
-
-        glPopMatrix();
-        draw();
+    }
 }
 
 

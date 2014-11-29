@@ -338,6 +338,9 @@
     <slot>set_scale()</slot>
     <slot>add_sphere()</slot>
     <slot>load_obj()</slot>
+    <slot>add_cone()</slot>
+    <slot>add_prism()</slot>
+    <slot>add_frustum()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -700,6 +703,54 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>load_obj()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCone</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_cone()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrism</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_prism()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFrustum</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_frustum()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

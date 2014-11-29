@@ -11,7 +11,7 @@ protected:
     static int counter;
     const static float current_scale=1.02;
 
-    GLfloat color[4];
+
     GLfloat ambient_color[4];
     GLfloat specular_color[4];
     GLfloat diffuse_color[4];
@@ -23,15 +23,16 @@ protected:
     QListWidgetItem* list_ltem;
 
     void set_glMaterial();
+    virtual void just_draw_yourself(double size,bool isCurrent)=0;
 public:
 
     GLElement();
 
     virtual void from_xml(QDomElement dom);
     //draw the element
-    virtual void draw()=0;
+    virtual void draw();
     //draw the element when it is selected
-    virtual void draw_current()=0;
+    virtual void draw_current();
     QListWidgetItem* getlistltem();
     //void set_color(GLfloat* color4);
     void set_color(GLfloat* color4,bool is_diffuse=true,bool is_specular=true,bool is_ambient=true);

@@ -19,7 +19,7 @@ GLElement::GLElement()
         diffuse_color[i]=1.0f;
         ambient_color[i]=1.0f;
         specular_color[i]=1.0f;
-        color[i]=1.0f;
+        //color[i]=1.0f;
     }
     for(int i=0;i<3;i++)
     {
@@ -37,10 +37,6 @@ QListWidgetItem* GLElement::getlistltem()
 
 void GLElement::set_color(GLfloat *color4, bool is_diffuse, bool is_specular, bool is_ambient)
 {
-    for(int i=0;i<4;i++)
-    {
-        this->color[i]=*(color4+i);
-    }
     if(is_diffuse)
     {
         for(int i=0;i<4;i++)
@@ -188,6 +184,30 @@ void GLElement::from_xml(QDomElement dom)
         }
         node=node.nextSibling();
     }
+}
+
+void GLElement::draw()
+{
+    glPushMatrix();
+    glTranslatef(position[0],position[1],position[2]);
+    set_glMaterial();
+
+    glScalef(scale[0],scale[1],scale[2]);
+    just_draw_yourself(size,false);
+
+    glPopMatrix();
+}
+
+void GLElement::draw_current()
+{
+    glPushMatrix();
+    glTranslatef(position[0],position[1],position[2]);
+    set_glMaterial();
+
+    glScalef(scale[0],scale[1],scale[2]);
+    just_draw_yourself(size,true);
+
+    glPopMatrix();
 }
 
 
