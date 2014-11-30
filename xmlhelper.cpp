@@ -111,3 +111,27 @@ void XMLHelper::from_xml(QDomNode *node, QString name, double *array, int count)
         *(array+i)=v.toDouble();
     }
 }
+
+void XMLHelper::getAttribute(QDomElement *dom, QString name, double *a)
+{
+    if(dom->hasAttribute(name))
+    {
+        *a=dom->attribute(name).toDouble();
+    }
+}
+
+void XMLHelper::getAttribute(QDomElement *dom, QString name, int *a)
+{
+    if(dom->hasAttribute(name))
+    {
+        *a=dom->attribute(name).toInt();
+    }
+}
+
+void XMLHelper::getAttribute(QDomElement *dom, QString name, float *a)
+{
+    if(dom->hasAttribute(name))
+    {
+        *a=dom->attribute(name).toFloat();
+    }
+}

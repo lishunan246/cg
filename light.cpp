@@ -3,6 +3,7 @@
 Light::Light(int name)
 {
     Q_ASSERT(name>=0&&name<=7);
+
     switch (name) {
     case 0:
         this->name=GL_LIGHT0;
@@ -60,7 +61,7 @@ QDomElement Light::to_xml(QDomDocument *doc)
 {
     QDomElement element=doc->createElement("light");
     element.setAttribute("cutoff",cutoff);
-    element.setAttribute("name",name);
+    element.setAttribute("name",(int)name);
     element.setAttribute("isenabled",(int)isEnabled);
 
     element.appendChild(XMLHelper::to_xml(doc,"position",position,4));
@@ -74,26 +75,20 @@ QDomElement Light::to_xml(QDomDocument *doc)
 
 void Light::from_xml(QDomElement dom)
 {
-    if(dom.hasAttribute("cutoff"))
-    {
-        this->cutoff=dom.attribute("cutoff").toFloat();
-    }
+    int t;
 
-    if(dom.hasAttribute("name"))
-    {
-        this->name=dom.attribute("name").toUInt();
-    }
+    XMLHelper::getAttribute(&dom,"cutoff",&cutoff);
 
-    if(dom.hasAttribute("isenabled"))
-    {
-        this->isEnabled=(bool)dom.attribute("isenabled").toInt();
-    }
+    XMLHelper::getAttribute(&dom,"isenabled",&t);
+    isEnabled=(bool)t;
+
+    XMLHelper::getAttribute(&dom,"name",&t);
+    name=(GLenum)t;
 
     QDomNode node=dom.firstChild();
+
     while(!node.isNull())
     {
-        QDomElement element=node.toElement();
-
         XMLHelper::from_xml(&node,"position",position,4);
         XMLHelper::from_xml(&node,"diffuse_color",diffuse_color,4);
         XMLHelper::from_xml(&node,"specular_color",specular_color,4);

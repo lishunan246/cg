@@ -103,36 +103,20 @@ void GLElement::set_rotate_speed(double speed)
 
 void GLElement::from_xml(QDomElement dom)
 {
-    if(dom.hasAttribute("size"))
-    {
-        this->size=dom.attribute("size").toDouble();
-    }
-
-    if(dom.hasAttribute("rotate_speed"))
-    {
-        this->rotate_speed=dom.attribute("rotate_speed").toDouble();
-    }
-
-    if(dom.hasAttribute("rotate_angle"))
-    {
-        this->rotate_angle=dom.attribute("rotate_angle").toDouble();
-    }
-
-    if(dom.hasAttribute("shininess"))
-    {
-        this->shininess=dom.attribute("shininess").toDouble();
-    }
+    XMLHelper::getAttribute(&dom,"size",&size);
+    XMLHelper::getAttribute(&dom,"rotate_speed",&rotate_speed);
+    XMLHelper::getAttribute(&dom,"rotate_angle",&rotate_angle);
+    XMLHelper::getAttribute(&dom,"shininess",&shininess);
 
     QDomNode node=dom.firstChild();
     while(!node.isNull())
     {
-        QDomElement element=node.toElement();
-
         XMLHelper::from_xml(&node,"position",position,3);
         XMLHelper::from_xml(&node,"scale",scale,3);
         XMLHelper::from_xml(&node,"ambient_color",ambient_color,4);
         XMLHelper::from_xml(&node,"specular_color",specular_color,4);
         XMLHelper::from_xml(&node,"diffuse_color",diffuse_color,4);
+
         node=node.nextSibling();
     }
 }

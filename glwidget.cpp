@@ -1,7 +1,5 @@
 #include "glwidget.h"
 
-
-
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
@@ -79,10 +77,7 @@ void GLWidget::from_xml(QDomElement root)
 {
     initialize();
     clear();
-    if(root.hasAttribute("rotate"))
-    {
-        rotate=root.attribute("rotate").toInt();
-    }
+    XMLHelper::getAttribute(&root,"rotate",&rotate);
     QDomNode n = root.firstChild();
     while(!n.isNull())
     {
