@@ -441,6 +441,12 @@ void GLWidget::add_cube()
     add_element(cube);
 }
 
+void GLWidget::add_cylinder()
+{
+    Cylinder* c= new Cylinder();
+    add_element(c);
+}
+
 void GLWidget::add_sphere()
 {
     Sphere* sphere=new Sphere();

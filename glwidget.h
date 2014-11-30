@@ -55,6 +55,7 @@ public slots:
     void add_element(GLElement* e);
     void add_teapot();
     void add_cube();
+    void add_cylinder();
     void add_sphere();
     void add_cone();
     void add_prism();

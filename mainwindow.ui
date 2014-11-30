@@ -145,6 +145,7 @@
    <addaction name="actionCone"/>
    <addaction name="actionPrism"/>
    <addaction name="actionFrustum"/>
+   <addaction name="actionCylinder"/>
    <addaction name="actionTeapot"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -339,6 +340,11 @@
     <string>Light 0</string>
    </property>
   </action>
+  <action name="actionCylinder">
+   <property name="text">
+    <string>Cylinder</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -376,6 +382,7 @@
     <slot>set_rotate_speed()</slot>
     <slot>set_shininess()</slot>
     <slot>config_light()</slot>
+    <slot>add_cylinder()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -850,6 +857,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>config_light()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCylinder</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>add_cylinder()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
