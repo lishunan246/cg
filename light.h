@@ -3,6 +3,8 @@
 #include <QString>
 #include "GL/gl.h"
 #include <QDomElement>
+
+#include "xmlhelper.h"
 class Light
 {
 private:
@@ -20,6 +22,7 @@ public:
     void disable();
     void draw();
     QDomElement to_xml(QDomDocument* doc);
+    void from_xml(QDomElement dom);
 };
 
 #endif // LIGHT_H

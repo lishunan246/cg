@@ -20,6 +20,7 @@
 #include "objhandler.h"
 #include "ui/colordialog.h"
 #include "light.h"
+#include "xmlhelper.h"
 
 class GLWidget : public QGLWidget
 {

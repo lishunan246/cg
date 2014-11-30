@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     glelements/sphere.cpp \
     objhandler.cpp \
     ui/colordialog.cpp \
-    light.cpp
+    light.cpp \
+    xmlhelper.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -32,7 +33,8 @@ HEADERS  += mainwindow.h \
     glelements/sphere.h \
     objhandler.h \
     ui/colordialog.h \
-    light.h
+    light.h \
+    xmlhelper.h
 
 FORMS    += mainwindow.ui \
     ui/colordialog.ui

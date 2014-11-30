@@ -54,36 +54,22 @@ QDomElement GLWidget::to_xml(QDomDocument *doc)
     QDomElement root=doc->createElement("GLWidget");
     root.setAttribute("rotate",rotate);
 
-
-    QDomElement eyes=doc->createElement("eyes");
-    root.appendChild(eyes);
-
-    for(int i=0;i<3;i++)
-    {
-        QDomElement node=doc->createElement("eye");
-        node.setAttribute("index",QString::number(i));
-        node.setAttribute("value",eye[i]);
-        eyes.appendChild(node);
-    }
-
-    QDomElement things=doc->createElement("things");
-    root.appendChild(things);
-
-    for(int i=0;i<3;i++)
-    {
-        QDomElement node=doc->createElement("thing");
-        node.setAttribute("index",QString::number(i));
-        node.setAttribute("value",thing[i]);
-        things.appendChild(node);
-    }
+    root.appendChild(XMLHelper::to_xml(doc,"eye",eye,3));
+    root.appendChild(XMLHelper::to_xml(doc,"thing",thing,3));
 
     QDomElement glelements=doc->createElement("GLElements");
     root.appendChild(glelements);
 
-    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    for (GLElement* e:v)
     {
-       QDomElement node=(*it)->to_xml(doc);
+       QDomElement node=e->to_xml(doc);
        glelements.appendChild(node);
+    }
+
+    for(Light* light:l)
+    {
+        QDomElement node=light->to_xml(doc);
+        glelements.appendChild(node);
     }
 
     return root;
@@ -102,41 +88,14 @@ void GLWidget::from_xml(QDomElement root)
     {
         QDomElement e = n.toElement(); // try to convert the node to an element(GLWidget)
 
-
         if(!e.isNull())
         {
             QString s=e.tagName();
 
-            if(s=="eyes")
-            {
-                QDomNode nodes[3];
-                nodes[0]=n.firstChild();
-                nodes[1]=nodes[0].nextSibling();
-                nodes[2]=nodes[1].nextSibling();
-                for(int i=0;i<3;i++)
-                {
-                    QDomElement e=nodes[i].toElement();
-                    QString v=e.attribute("value");
+            XMLHelper::from_xml(&n,"eye",eye,3);
+            XMLHelper::from_xml(&n,"thing",thing,3);
 
-                    eye[i]=v.toDouble();
-                }
-            }
-            else if(s=="things")
-            {
-                QDomNode nodes[3];
-                nodes[0]=n.firstChild();
-                nodes[1]=nodes[0].nextSibling();
-                nodes[2]=nodes[1].nextSibling();
-                for(int i=0;i<3;i++)
-                {
-                    QDomElement e=nodes[i].toElement();
-                    QString v=e.attribute("value");
-
-                    thing[i]=v.toDouble();
-                }
-            }
-
-            else if(s=="GLElements")
+            if(s=="GLElements")
             {
                 QDomNode node=e.firstChild();
                 while(!node.isNull())

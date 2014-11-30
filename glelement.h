@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 #include <QListWidgetItem>
 #include <QtXml>
-
+#include "xmlhelper.h"
 class GLElement
 {
 protected:
