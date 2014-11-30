@@ -117,6 +117,30 @@ void GLWidget::from_xml(QDomElement root)
                             s->from_xml(element);
                             add_element(s);
                         }
+                        else if(element.tagName()=="frustum")
+                        {
+                            Frustum* s=new Frustum();
+                            s->from_xml(element);
+                            add_element(s);
+                        }
+                        else if(element.tagName()=="prism")
+                        {
+                            Prism* s=new Prism();
+                            s->from_xml(element);
+                            add_element(s);
+                        }
+                        else if(element.tagName()=="cylinder")
+                        {
+                            Cylinder* s=new Cylinder();
+                            s->from_xml(element);
+                            add_element(s);
+                        }
+                        else if(element.tagName()=="cone")
+                        {
+                            Cone* s=new Cone();
+                            s->from_xml(element);
+                            add_element(s);
+                        }
                     }
 
                     node=node.nextSibling();
@@ -425,17 +449,23 @@ void GLWidget::add_sphere()
 
 void GLWidget::add_cone()
 {
-    MainWindow::alert("CONE");
+//    MainWindow::alert("CONE");
+    Cone* cone=new Cone();
+    add_element(cone);
 }
 
 void GLWidget::add_prism()
 {
-    MainWindow::alert("PRISM");
+//    MainWindow::alert("PRISM");
+    Prism* prism = new Prism();
+    add_element(prism);
 }
 
 void GLWidget::add_frustum()
 {
-    MainWindow::alert("FRUSTUM");
+//    MainWindow::alert("FRUSTUM");
+    Frustum* frustum=new Frustum();
+    add_element(frustum);
 }
 
 void GLWidget::delete_current()

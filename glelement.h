@@ -47,7 +47,7 @@ public:
     void set_rotate_angle(double angle);
     void set_rotate_speed(double speed);
 
-    QDomElement to_xml(QDomDocument* doc);
+    virtual QDomElement to_xml(QDomDocument* doc);
     virtual ~GLElement();
 };
 
