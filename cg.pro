@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     glelements/teapot.cpp \
     glelements/sphere.cpp \
     objhandler.cpp \
-    ui/colordialog.cpp
+    ui/colordialog.cpp \
+    light.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -30,9 +31,12 @@ HEADERS  += mainwindow.h \
     glelements/teapot.h \
     glelements/sphere.h \
     objhandler.h \
-    ui/colordialog.h
+    ui/colordialog.h \
+    light.h
 
 FORMS    += mainwindow.ui \
     ui/colordialog.ui
 
 LIBS +=-lglut -lGLU
+
+QMAKE_CXXFLAGS += -std=c++11

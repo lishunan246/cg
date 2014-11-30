@@ -9,7 +9,7 @@ class GLElement
 {
 protected:
     static int counter;
-    const static float current_scale=1.02;
+    const float current_scale=1.02;
 
 
     GLfloat ambient_color[4];

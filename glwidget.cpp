@@ -594,6 +594,10 @@ void GLWidget::initializeGL()
     glEnable(GL_LIGHT1);
 //    glEnable(GL_LIGHTING_BIT);
 //    glEnable(GL_COLOR_MATERIAL);
+    Light* light=new Light(0);
+    light->enable();
+
+    l.push_back(light);
 }
 
 void GLWidget::paintGL()
@@ -611,6 +615,11 @@ void GLWidget::paintGL()
             (*it)->draw_current();
         else
             (*it)->draw();
+    }
+
+    for(Light* light:l)
+    {
+        light->draw();
     }
 
 }

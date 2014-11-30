@@ -19,6 +19,7 @@
 #include "glelements.h"
 #include "objhandler.h"
 #include "ui/colordialog.h"
+#include "light.h"
 
 class GLWidget : public QGLWidget
 {
@@ -78,6 +79,7 @@ private:
     double thing[3];
     int rotate;
     std::vector<GLElement*> v;
+    std::vector<Light*> l;
     void initialize();
     void get_OGLPos(int x,int y);
 };
