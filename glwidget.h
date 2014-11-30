@@ -19,6 +19,7 @@
 #include "glelements.h"
 #include "objhandler.h"
 #include "ui/colordialog.h"
+#include "ui/lightdialog.h"
 #include "light.h"
 #include "xmlhelper.h"
 
@@ -30,6 +31,8 @@ public:
     QDomElement to_xml(QDomDocument* doc);
     void from_xml(QDomElement root);
 public slots:
+    void config_light();
+
     void left();
     void up();
     void right();

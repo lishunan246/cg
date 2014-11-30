@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     objhandler.cpp \
     ui/colordialog.cpp \
     light.cpp \
-    xmlhelper.cpp
+    xmlhelper.cpp \
+    ui/lightdialog.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -34,10 +35,12 @@ HEADERS  += mainwindow.h \
     objhandler.h \
     ui/colordialog.h \
     light.h \
-    xmlhelper.h
+    xmlhelper.h \
+    ui/lightdialog.h
 
 FORMS    += mainwindow.ui \
-    ui/colordialog.ui
+    ui/colordialog.ui \
+    ui/lightdialog.ui
 
 LIBS +=-lglut -lGLU
 

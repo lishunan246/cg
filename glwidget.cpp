@@ -132,6 +132,15 @@ void GLWidget::from_xml(QDomElement root)
     }
 }
 
+void GLWidget::config_light()
+{
+    LightDialog dialog;
+    if(dialog.exec())
+    {
+
+    }
+}
+
 void GLWidget::left()
 {
     eye[0]+=0.5;
