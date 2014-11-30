@@ -22,7 +22,11 @@ SOURCES += main.cpp\
     objhandler.cpp \
     ui/colordialog.cpp \
     light.cpp \
-    xmlhelper.cpp
+    xmlhelper.cpp \
+    glelements/cone.cpp \
+    glelements/cylinder.cpp \
+    glelements/prism.cpp \
+    glelements/frustum.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -34,7 +38,11 @@ HEADERS  += mainwindow.h \
     objhandler.h \
     ui/colordialog.h \
     light.h \
-    xmlhelper.h
+    xmlhelper.h \
+    glelements/cone.h \
+    glelements/cylinder.h \
+    glelements/prism.h \
+    glelements/frustum.h
 
 FORMS    += mainwindow.ui \
     ui/colordialog.ui

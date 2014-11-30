@@ -13,7 +13,8 @@ Cube::Cube()
 
 void Cube::just_draw_yourself(double size, bool isCurrent)
 {
-    glutSolidCube(size);
+//    glutSolidCube(size);
+    solidCube(size);
     if(isCurrent)
     {
         glScalef(current_scale,current_scale,current_scale);
@@ -21,6 +22,75 @@ void Cube::just_draw_yourself(double size, bool isCurrent)
     }
 }
 
+void Cube::solidCube(double size)
+{
+    float half = (float) size / 2;
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);	// 给出纹理映射坐标
+    glVertex3f(half, half, half);
+    glTexCoord2f(0, 1);
+    glVertex3f(half, -half, half);
+    glTexCoord2f(1, 1);
+    glVertex3f(half, -half, -half);
+    glTexCoord2f(1, 0);
+    glVertex3f(half, half, -half);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);
+    glVertex3f(-half, half, half);
+    glTexCoord2f(0, 1);
+    glVertex3f(-half, -half, half);
+    glTexCoord2f(1, 1);
+    glVertex3f(-half, -half, -half);
+    glTexCoord2f(1, 0);
+    glVertex3f(-half, half, -half);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);
+    glVertex3f(half, half, half);
+    glTexCoord2f(0, 1);
+    glVertex3f(-half, half, half);
+    glTexCoord2f(1, 1);
+    glVertex3f(-half, half, -half);
+    glTexCoord2f(1, 0);
+    glVertex3f(half, half, -half);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);
+    glVertex3f(half, -half, half);
+    glTexCoord2f(0, 1);
+    glVertex3f(-half, -half, half);
+    glTexCoord2f(1, 1);
+    glVertex3f(-half, -half, -half);
+    glTexCoord2f(1, 0);
+    glVertex3f(half, -half, -half);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);
+    glVertex3f(half, half, half);
+    glTexCoord2f(0, 1);
+    glVertex3f(half, -half, half);
+    glTexCoord2f(1, 1);
+    glVertex3f(-half, -half, half);
+    glTexCoord2f(1, 0);
+    glVertex3f(-half, half, half);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0, 0);
+    glVertex3f(half, half, -half);
+    glTexCoord2f(0, 1);
+    glVertex3f(half, -half, -half);
+    glTexCoord2f(1, 1);
+    glVertex3f(-half, -half, -half);
+    glTexCoord2f(1, 0);
+    glVertex3f(-half, half, -half);
+    glEnd();
+}
 //void Cube::draw()
 //{
 //    glPushMatrix();

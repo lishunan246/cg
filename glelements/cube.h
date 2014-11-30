@@ -12,6 +12,7 @@ public:
 //    void draw();
 //    void draw_current();
     void just_draw_yourself(double size,bool isCurrent);
+    void solidCube(double size);
     ~Cube();
 };
 
