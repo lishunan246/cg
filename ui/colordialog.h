@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "glelement.h"
+#include "light.h"
 namespace Ui {
 class ColorDialog;
 }
@@ -16,9 +17,11 @@ public:
     ~ColorDialog();
     void accept();
     void setCurrentElement(GLElement* e);
+    void setLight(Light* e);
 private:
     Ui::ColorDialog *ui;
-    GLElement* element;
+    GLElement* element=NULL;
+    Light* light=NULL;
 };
 
 #endif // COLORDIALOG_H

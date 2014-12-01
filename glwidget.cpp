@@ -227,10 +227,7 @@ void GLWidget::load_obj()
 }
 
 void GLWidget::set_color()
-{
-    bool ok;
-    GLfloat temp[4];
-
+{ 
     if(currentElement==NULL)
     {
        MainWindow::alert("No element selected");
@@ -240,20 +237,8 @@ void GLWidget::set_color()
     ColorDialog dialog;
     dialog.setCurrentElement(currentElement);
     dialog.exec();
-    \
-    return;
 
-    for(int i=0;i<4;i++)
-    {
-        double color = QInputDialog::getDouble(0, tr("Input color value"),
-                tr("Value:"), 1.00, 0, 1, 2, &ok);
-        if (ok)
-            temp[i]=(float)color;
-        else
-            return;
-    }
-    currentElement->set_color(temp);
-    updateGL();
+    return;
 }
 
 void GLWidget::set_position()

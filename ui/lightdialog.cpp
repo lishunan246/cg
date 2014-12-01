@@ -50,3 +50,10 @@ void LightDialog::on_buttonBox_accepted()
 
     light->cutoff=ui->c->value();
 }
+
+void LightDialog::on_set_color_Btn_clicked()
+{
+    ColorDialog dialog;
+    dialog.setLight(light);
+    dialog.exec();
+}

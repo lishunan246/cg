@@ -11,11 +11,6 @@ protected:
     static int counter;
     const float current_scale=1.02;
 
-
-    GLfloat ambient_color[4];
-    GLfloat specular_color[4];
-    GLfloat diffuse_color[4];
-
     GLfloat position[3];
     GLfloat scale[3];
     GLdouble size;
@@ -24,11 +19,13 @@ protected:
     QString type,name;
     QListWidgetItem* list_ltem;
 
-
-
     void set_glMaterial();
     virtual void just_draw_yourself(double size,bool isCurrent)=0;
+
 public:
+    GLfloat ambient_color[4];
+    GLfloat specular_color[4];
+    GLfloat diffuse_color[4];
 
     GLElement();
 

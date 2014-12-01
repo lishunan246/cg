@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "light.h"
-
+#include "colordialog.h"
 namespace Ui {
 class LightDialog;
 }
@@ -21,6 +21,8 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+
+    void on_set_color_Btn_clicked();
 
 private:
     Ui::LightDialog *ui;
