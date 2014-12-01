@@ -36,35 +36,7 @@ void GLWidget::clear()
     l[0]->enable();
 }
 
-void GLWidget::get_OGLPos(int x, int y)
-{
-    GLint viewport[4];                  // Where The Viewport Values Will Be Stored
-    glGetIntegerv(GL_VIEWPORT, viewport);           // Retrieves The Viewport Values (X, Y, Width, Height)
 
-    GLdouble modelview[16];                 // Where The 16 Doubles Of The Modelview Matrix Are To Be Stored
-    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);       // Retrieve The Modelview Matrix
-
-    GLdouble projection[16];                // Where The 16 Doubles Of The Projection Matrix Are To Be Stored
-    glGetDoublev(GL_PROJECTION_MATRIX, projection);     // Retrieve The Projection Matrix
-
-    GLfloat winX, winY, winZ;               // Holds Our X, Y and Z Coordinates
-    winX=(float)x;
-    winY=(float)y;
-    winY=(float)viewport[3]-winY;
-
-    glReadPixels(winX, winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-
-    GLdouble posX, posY, posZ;
-
-    gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
-
-    QString q1=QString::number(posX);
-    QString q2=QString::number(posY);
-    QString q3=QString::number(posZ);
-
-    MainWindow::alert(q1+", "+q2+","+q3);
-    return;
-}
 
 
 QDomElement GLWidget::to_xml(QDomDocument *doc)
@@ -375,6 +347,11 @@ void GLWidget::set_size()
     updateGL();
 }
 
+void GLWidget::set_texture()
+{
+    MainWindow::alert("textureeeeeeeeeeeeee!");
+}
+
 void GLWidget::set_rotate_angle()
 {
     bool ok;
@@ -657,5 +634,34 @@ void GLWidget::mouseDoubleClickEvent(QMouseEvent * mouse)
     MainWindow::alert(s+", "+b);
 }
 
+void GLWidget::get_OGLPos(int x, int y)
+{
+    GLint viewport[4];                  // Where The Viewport Values Will Be Stored
+    glGetIntegerv(GL_VIEWPORT, viewport);           // Retrieves The Viewport Values (X, Y, Width, Height)
+
+    GLdouble modelview[16];                 // Where The 16 Doubles Of The Modelview Matrix Are To Be Stored
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);       // Retrieve The Modelview Matrix
+
+    GLdouble projection[16];                // Where The 16 Doubles Of The Projection Matrix Are To Be Stored
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);     // Retrieve The Projection Matrix
+
+    GLfloat winX, winY, winZ;               // Holds Our X, Y and Z Coordinates
+    winX=(float)x;
+    winY=(float)y;
+    winY=(float)viewport[3]-winY;
+
+    glReadPixels(winX, winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+    GLdouble posX, posY, posZ;
+
+    gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+
+    QString q1=QString::number(posX);
+    QString q2=QString::number(posY);
+    QString q3=QString::number(posZ);
+
+    MainWindow::alert(q1+", "+q2+","+q3);
+    return;
+}
 
 

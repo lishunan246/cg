@@ -383,6 +383,7 @@
     <slot>set_shininess()</slot>
     <slot>config_light()</slot>
     <slot>add_cylinder()</slot>
+    <slot>set_texture()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -873,6 +874,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>add_cylinder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_texture</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_texture()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

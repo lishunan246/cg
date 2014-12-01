@@ -14,7 +14,7 @@ private:
     GLfloat position[4]={0,0,1,0};
     GLfloat direction[3]={0,0,-1};
     GLfloat cutoff=180;
-    bool isEnabled;
+    bool isEnabled=false;
     GLenum name;
     int index;
 public:
