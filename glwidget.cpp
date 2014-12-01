@@ -167,32 +167,25 @@ void GLWidget::left()
 {
     eye[0]+=0.5;
     thing[0]+=0.5;
-
-    updateGL();
 }
 
 void GLWidget::up()
 {
     eye[1]-=0.5;
     thing[1]-=0.5;
-
-    updateGL();
 }
 
 void GLWidget::right()
 {
     eye[0]-=0.5;
     thing[0]-=0.5;
-
-    updateGL();
 }
+
 
 void GLWidget::down()
 {
     eye[1]+=0.5;
     thing[1]+=0.5;
-
-    updateGL();
 }
 
 void GLWidget::rotate_left()
@@ -209,16 +202,12 @@ void GLWidget::zoom_in()
 {
     eye[2]-=0.5;
     thing[2]-=0.5;
-
-    updateGL();
 }
 
 void GLWidget::zoom_out()
 {
     eye[2]+=0.5;
     thing[2]+=0.5;
-
-    updateGL();
 }
 
 void GLWidget::load_obj()
@@ -415,6 +404,7 @@ void GLWidget::add_element(GLElement *e)
     v.insert(i,e);
 
     emit glelement_added(e->getlistltem());
+    set_position();
 }
 
 void GLWidget::add_teapot()
@@ -551,8 +541,6 @@ void GLWidget::loadfile()
     QDomElement docElem = doc.documentElement();
 
     from_xml(docElem);
-
-    MainWindow::alert("Load successfully!");
 }
 
 
