@@ -404,7 +404,6 @@ void GLWidget::add_element(GLElement *e)
     v.insert(i,e);
 
     emit glelement_added(e->getlistltem());
-    set_position();
 }
 
 void GLWidget::add_teapot()
