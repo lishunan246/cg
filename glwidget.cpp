@@ -36,9 +36,6 @@ void GLWidget::clear()
     l[0]->enable();
 }
 
-
-
-
 QDomElement GLWidget::to_xml(QDomDocument *doc)
 {
     QDomElement root=doc->createElement("GLWidget");
@@ -157,11 +154,13 @@ void GLWidget::from_xml(QDomElement root)
 
 void GLWidget::config_light()
 {
+    bool ok;
+    int t = QInputDialog::getInt(0, tr("Which light? 0~7"),
+                 tr("Value:"), 0,0, 7, 1, &ok);
+    Light* p=l[t];
     LightDialog dialog;
-    if(dialog.exec())
-    {
-
-    }
+    dialog.setLight(p);
+    dialog.exec();
 }
 
 void GLWidget::left()

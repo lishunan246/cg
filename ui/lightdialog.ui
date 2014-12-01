@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -28,7 +28,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="isEnabledBox">
           <property name="text">
            <string>isEnabled</string>
           </property>
@@ -87,7 +87,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="c"/>
+           <widget class="QDoubleSpinBox" name="c">
+            <property name="maximum">
+             <double>180.000000000000000</double>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
