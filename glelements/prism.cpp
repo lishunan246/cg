@@ -46,12 +46,14 @@ void Prism::prism(double size, bool isWire)
     int mode = isWire ? GL_LINE_LOOP : GL_POLYGON;
 
     glBegin(mode);
+    glNormal3f(0, 0, -1.0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
         glVertex3f(cos(angle) * size, sin(angle) * size, 0);
     }
     glEnd();
 
     glBegin(mode);
+    glNormal3f(0, 0, 1.0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
         glVertex3f(cos(angle) * size, sin(angle) * size, 1);
     }
@@ -59,6 +61,7 @@ void Prism::prism(double size, bool isWire)
 
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
         glBegin(mode);
+        //need a normal vector
         glVertex3f(cos(angle) * size, sin(angle) * size, 0);
         glVertex3f(cos(angle) * size, sin(angle) * size, 1);
         glVertex3f(cos(angle + duration) * size, sin(angle + duration) * size, 1);

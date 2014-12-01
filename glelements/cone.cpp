@@ -47,7 +47,9 @@ void Cone::wireCone(double radius, double height, int slice)		// XY平面为底 
 {
     GLUquadricObj *obj = gluNewQuadric();
     gluQuadricDrawStyle(obj, GLU_LINE);
+    gluQuadricNormals(obj, GL_SMOOTH);
     gluCylinder(obj, radius, 0, height, slice, 10);
+//    gluQuadricDrawStyle(obj, GLU_FILL);
 //    double doublePI = PI * 2;
 //    double duration = doublePI / slice;
 //    glBegin(GL_TRIANGLE_FAN);

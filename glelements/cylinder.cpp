@@ -32,6 +32,8 @@ void Cylinder::wireCylinder(double radius, double height, int slice)		// XYÂπ≥Èù
 {
     GLUquadricObj *obj = gluNewQuadric();
     gluQuadricDrawStyle(obj, GLU_LINE);
+    gluQuadricNormals(obj, GL_SMOOTH);
+//        gluQuadricDrawStyle(obj, GLU_FILL);
     gluCylinder(obj, radius, radius, height, slice, 10);
 }
 
