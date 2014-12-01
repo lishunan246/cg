@@ -16,6 +16,7 @@ private:
     GLfloat cutoff=180;
     bool isEnabled;
     GLenum name;
+    int index;
 public:
     Light(int name);
     void enable();

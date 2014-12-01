@@ -3,17 +3,37 @@
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
-    initialize();
+    for(int i=0;i<8;i++)
+    {
+        l[i]=new Light(i);
+    }
     clear();
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
 }
 
-void GLWidget::initialize()
+void GLWidget::clear()
 {
     eye[0]=eye[1]=eye[2]=thing[1]=thing[2]=thing[0]=0;
     eye[2]=5;
     rotate=0;
+
+    currentElement=NULL;
+
+    for (GLElement* e:v)
+    {
+        if(e!=NULL)
+            delete e;
+    }
+    v.clear();
+
+    for(int i=0;i<8;i++)
+    {
+        delete l[i];
+        l[i]=new Light(i);
+    }
+
+    l[0]->enable();
 }
 
 void GLWidget::get_OGLPos(int x, int y)
@@ -75,7 +95,6 @@ QDomElement GLWidget::to_xml(QDomDocument *doc)
 
 void GLWidget::from_xml(QDomElement root)
 {
-    initialize();
     clear();
     XMLHelper::getAttribute(&root,"rotate",&rotate);
     QDomNode n = root.firstChild();
@@ -140,6 +159,14 @@ void GLWidget::from_xml(QDomElement root)
                             Cone* s=new Cone();
                             s->from_xml(element);
                             add_element(s);
+                        }
+                        else if(element.tagName()=="light")
+                        {
+                            int index=element.attribute("index").toInt();
+                            Light* light=new Light(index);
+                            light->from_xml(element);
+                            delete l[index];
+                            l[index]=light;
                         }
                     }
 
@@ -567,18 +594,7 @@ void GLWidget::loadfile()
     MainWindow::alert("Load successfully!");
 }
 
-void GLWidget::clear()
-{
-    currentElement=NULL;
 
-    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
-    {
-        if(*it!=NULL)
-            delete *it;
-    }
-    v.clear();
-    initialize();
-}
 
 void GLWidget::initializeGL()
 {
@@ -586,17 +602,6 @@ void GLWidget::initializeGL()
     glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
-    GLfloat a[]={1,1,1,1};
-    glLightfv(GL_LIGHT1,GL_SPECULAR,a);
-    //glLightfv(GL_LIGHT1,GL_AMBIENT,a);
-
-    glEnable(GL_LIGHT1);
-//    glEnable(GL_LIGHTING_BIT);
-//    glEnable(GL_COLOR_MATERIAL);
-    Light* light=new Light(0);
-    light->enable();
-
-    l.push_back(light);
 }
 
 void GLWidget::paintGL()
@@ -606,14 +611,14 @@ void GLWidget::paintGL()
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
     glRotatef(rotate,0,1,0);
 
-    for (std::vector<GLElement*>::iterator it = v.begin(); it != v.end(); ++it)
+    for (GLElement* e:v)
     {
-        if(*it==NULL)
+        if(e==NULL)
             continue;
-        if(currentElement==*it)
-            (*it)->draw_current();
+        if(currentElement==e)
+            e->draw_current();
         else
-            (*it)->draw();
+            e->draw();
     }
 
     for(Light* light:l)

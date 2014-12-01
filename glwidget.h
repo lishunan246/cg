@@ -84,8 +84,7 @@ private:
     double thing[3];
     int rotate;
     std::vector<GLElement*> v;
-    std::vector<Light*> l;
-    void initialize();
+    Light* l[8];
     void get_OGLPos(int x,int y);
 };
 

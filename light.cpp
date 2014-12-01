@@ -3,7 +3,7 @@
 Light::Light(int name)
 {
     Q_ASSERT(name>=0&&name<=7);
-
+    this->index=name;
     switch (name) {
     case 0:
         this->name=GL_LIGHT0;
@@ -61,7 +61,7 @@ QDomElement Light::to_xml(QDomDocument *doc)
 {
     QDomElement element=doc->createElement("light");
     element.setAttribute("cutoff",cutoff);
-    element.setAttribute("name",(int)name);
+    element.setAttribute("index",index);
     element.setAttribute("isenabled",(int)isEnabled);
 
     element.appendChild(XMLHelper::to_xml(doc,"position",position,4));
@@ -82,8 +82,7 @@ void Light::from_xml(QDomElement dom)
     XMLHelper::getAttribute(&dom,"isenabled",&t);
     isEnabled=(bool)t;
 
-    XMLHelper::getAttribute(&dom,"name",&t);
-    name=(GLenum)t;
+    XMLHelper::getAttribute(&dom,"index",&index);
 
     QDomNode node=dom.firstChild();
 
