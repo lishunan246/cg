@@ -5,6 +5,7 @@ class Teapot : public GLElement
 {
 private:
     static int counter;
+    static int index;
 public:
     Teapot();
 //    void draw();

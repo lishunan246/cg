@@ -8,6 +8,7 @@ class Prism : public GLElement
 {
 private:
     static int counter;
+    static int index;
     int pointNum = 4;
 public:
     Prism();

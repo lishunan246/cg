@@ -1,11 +1,13 @@
 #include "teapot.h"
 
 int Teapot::counter=0;
+int Teapot::index=0;
 Teapot::Teapot()
 {
     counter++;
+    index++;
     type="teapot";
-    name=type+QString::number(counter);
+    name=type+QString::number(index);
     delete list_ltem;
     list_ltem =new QListWidgetItem(name);
 }

@@ -8,6 +8,7 @@ class Cone : public GLElement
 {
 private:
     static int counter;
+    static int index;
 public:
     Cone();
     void just_draw_yourself(double size,bool isCurrent);

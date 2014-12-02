@@ -8,6 +8,7 @@ class Cylinder : public GLElement
 {
 private:
     static int counter;
+    static int index;
 public:
     Cylinder();
     void just_draw_yourself(double size,bool isCurrent);

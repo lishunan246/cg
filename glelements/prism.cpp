@@ -1,12 +1,13 @@
 #include "prism.h"
 
 int Prism::counter = 0;
-
+int Prism::index=0;
 Prism::Prism()
 {
     counter++;
+    index++;
     type="prism";
-    name=type+QString::number(counter);
+    name=type+QString::number(index);
     delete list_ltem;
     list_ltem =new QListWidgetItem(name);
 }

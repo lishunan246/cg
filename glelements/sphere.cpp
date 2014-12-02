@@ -1,10 +1,12 @@
 #include "sphere.h"
 int Sphere::counter=0;
+int Sphere::index=0;
 Sphere::Sphere()
 {
     counter++;
+    index++;
     type="sphere";
-    name=type+QString::number(counter);
+    name=type+QString::number(index);
     delete list_ltem;
     list_ltem =new QListWidgetItem(name);
 }

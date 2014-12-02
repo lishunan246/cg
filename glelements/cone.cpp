@@ -1,12 +1,14 @@
 #include "cone.h"
 
 int Cone::counter = 0;
+int Cone::index=0;
 
 Cone :: Cone()
 {
     counter++;
+    index++;
     type = "cone";
-    name = type+QString::number(counter);
+    name = type+QString::number(index);
     delete list_ltem;
     list_ltem = new QListWidgetItem(name);
 }

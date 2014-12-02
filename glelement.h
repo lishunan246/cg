@@ -9,6 +9,7 @@ class GLElement
 {
 protected:
     static int counter;
+    static int index;
     const float current_scale=1.02;
 
     GLfloat position[3];

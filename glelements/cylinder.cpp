@@ -1,12 +1,13 @@
 #include "cylinder.h"
 
 int Cylinder::counter = 0;
-
+int Cylinder::index=0;
 Cylinder :: Cylinder()
 {
     counter++;
+    index++;
     type = "cylinder";
-    name = type+QString::number(counter);
+    name = type+QString::number(index);
     delete list_ltem;
     list_ltem = new QListWidgetItem(name);
 }

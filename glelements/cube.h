@@ -7,6 +7,7 @@ class Cube : public GLElement
 {
 private:
     static int counter;
+    static int index;
 public:
     Cube();
 //    void draw();

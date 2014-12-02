@@ -8,6 +8,7 @@ class Frustum : public GLElement
 {
 private:
     static int counter;
+    static int index;
     int pointNum = 4;
     double ratio = 0.5;
 public:

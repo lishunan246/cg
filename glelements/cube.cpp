@@ -1,12 +1,13 @@
 #include "cube.h"
 
 int Cube::counter=0;
-
+int Cube::index=0;
 Cube::Cube()
 {
     counter++;
+    index++;
     type="cube";
-    name=type+QString::number(counter);
+    name=type+QString::number(index);
     delete list_ltem;
     list_ltem =new QListWidgetItem(name);
 }

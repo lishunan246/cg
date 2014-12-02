@@ -1,12 +1,13 @@
 #include "frustum.h"
 
 int Frustum::counter = 0;
-
+int Frustum::index=0;
 Frustum :: Frustum()
 {
     counter++;
+    index++;
     type = "frustum";
-    name = type+QString::number(counter);
+    name = type+QString::number(index);
     delete list_ltem;
     list_ltem = new QListWidgetItem(name);
 }

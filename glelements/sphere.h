@@ -5,6 +5,7 @@ class Sphere : public GLElement
 {
 private:
     static int counter;
+    static int index;
 public:
     Sphere();
 //    void draw();
