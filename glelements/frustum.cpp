@@ -14,41 +14,83 @@ Frustum :: Frustum()
 
 void Frustum::just_draw_yourself(double size,bool isCurrent)
 {
-    frustum(size, false);
+    SolidFrustum(size);
     if (isCurrent)
     {
         glScalef(current_scale,current_scale,current_scale);
-        frustum(size, true);
+        WireFrustum(size);
     }
 }
 
-void Frustum::frustum(double size, bool isWire)		// XY平面为底 Z轴正向为高的正方向
+void Frustum::WireFrustum(double size)
 {
     double doublePI = PI * 2;
     double duration = doublePI / pointNum;
-    int mode = isWire ? GL_LINE_LOOP : GL_POLYGON;
+    double uppersize = size * ratio;
+    double a, b;
 
-    glBegin(mode);
+    glBegin(GL_LINE_LOOP);
+    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+        a = cos(angle);
+        b = sin(angle);
+        glVertex3f(a * size, b * size, 0);
+    }
+    glEnd();
+
+    glBegin(GL_LINE_LOOP);
+    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+        a = cos(angle);
+        b = sin(angle);
+        glVertex3f(a * uppersize, b * uppersize, 1);
+    }
+    glEnd();
+
+    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+        glBegin(GL_LINE_LOOP);
+        glVertex3f(cos(angle) * size, sin(angle) * size, 0);
+        glVertex3f(cos(angle) * uppersize, sin(angle) * uppersize, 1);
+        glVertex3f(cos(angle + duration) * uppersize, sin(angle + duration) * uppersize, 1);
+        glVertex3f(cos(angle + duration) * size, sin(angle + duration) * size, 0);
+        glEnd();
+    }
+}
+
+void Frustum::SolidFrustum(double size)		// XY平面为底 Z轴正向为高的正方向
+{
+    double doublePI = PI * 2;
+    double duration = doublePI / pointNum;
+    double uppersize = size * ratio;
+    double a, b;
+
+    glBegin(GL_TRIANGLE_FAN);
     glNormal3f(0, 0, -1.0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        glVertex3f(cos(angle) * size, sin(angle) * size, 0);
+        a = cos(angle);
+        b = sin(angle);
+        glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * size, b * size, 0);
     }
     glEnd();
 
-    glBegin(mode);
+    glBegin(GL_TRIANGLE_FAN);
     glNormal3f(0, 0, 1.0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        glVertex3f(cos(angle) * size * ratio, sin(angle) * size * ratio, 1);
+        a = cos(angle);
+        b = sin(angle);
+        glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * uppersize, b * uppersize, 1);
     }
     glEnd();
 
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        glBegin(mode);
-        // need a normal vector
-        glVertex3f(cos(angle) * size, sin(angle) * size, 0);
-        glVertex3f(cos(angle) * size * ratio, sin(angle) * size * ratio, 1);
-        glVertex3f(cos(angle + duration) * size  * ratio, sin(angle + duration) * size  * ratio, 1);
-        glVertex3f(cos(angle + duration) * size, sin(angle + duration) * size, 0);
+        glBegin(GL_TRIANGLES);
+        // need a normal vector			TO-DO
+        // right up triangle
+        glTexCoord2f(1, 0); glVertex3f(cos(angle) * size, sin(angle) * size, 0);
+        glTexCoord2f(1, 1); glVertex3f(cos(angle) * uppersize, sin(angle) * uppersize, 1);
+        glTexCoord2f(0, 1); glVertex3f(cos(angle + duration) * uppersize, sin(angle + duration) * uppersize, 1);
+        // left down triangle
+        glTexCoord2f(0, 0); glVertex3f(cos(angle + duration) * size, sin(angle + duration) * size, 0);
+        glTexCoord2f(1, 0); glVertex3f(cos(angle) * size, sin(angle) * size, 0);
+        glTexCoord2f(0, 1); glVertex3f(cos(angle + duration) * uppersize, sin(angle + duration) * uppersize, 1);
         glEnd();
     }
 }

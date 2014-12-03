@@ -56,14 +56,10 @@ void Cube::solidCube(double size)
     for (i = 5; i >= 0; i--) {
       glBegin(GL_QUADS);
       glNormal3fv(&n[i][0]);
-      glTexCoord2f(0, 0);
-      glVertex3fv(&v[faces[i][0]][0]);
-      glTexCoord2f(0, 1);
-      glVertex3fv(&v[faces[i][1]][0]);
-      glTexCoord2f(1, 1);
-      glVertex3fv(&v[faces[i][2]][0]);
-      glTexCoord2f(1, 0);
-      glVertex3fv(&v[faces[i][3]][0]);
+      glTexCoord2f(0, 0); glVertex3fv(&v[faces[i][0]][0]);
+      glTexCoord2f(0, 1); glVertex3fv(&v[faces[i][1]][0]);
+      glTexCoord2f(1, 1); glVertex3fv(&v[faces[i][2]][0]);
+      glTexCoord2f(1, 0); glVertex3fv(&v[faces[i][3]][0]);
       glEnd();
     }
 }

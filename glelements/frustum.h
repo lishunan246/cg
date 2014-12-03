@@ -14,7 +14,8 @@ private:
 public:
     Frustum();
     void just_draw_yourself(double size,bool isCurrent);
-    void frustum(double size, bool isWire);
+    void SolidFrustum(double size);
+    void WireFrustum(double size);
     QDomElement to_xml(QDomDocument* doc);
     void from_xml(QDomElement dom);
     void set_pointNum(int pointNum);

@@ -13,7 +13,8 @@ private:
 public:
     Prism();
     void just_draw_yourself(double size,bool isCurrent);
-    void prism(double size, bool isWire);
+    void SolidPrism(double size);
+    void WirePrism(double size);
     void from_xml(QDomElement dom);
     QDomElement to_xml(QDomDocument* doc);
     void set_pointNum(int pointNum);
