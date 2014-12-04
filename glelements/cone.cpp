@@ -25,48 +25,57 @@ void Cone::just_draw_yourself(double size,bool isCurrent)
 
 void Cone::solidCone(double radius, double height, int slice)		// XY平面为底 Z轴正向为高的正方向
 {
-    GLUquadricObj *obj = gluNewQuadric();
-    gluQuadricTexture(obj, true);
-    gluCylinder(obj, radius, 0, height, slice, 10);
-//    double doublePI = PI * 2;
-//    double duration = doublePI / slice;
-//    glBegin(GL_TRIANGLE_FAN);
-//    glVertex3f(0, 0, height);
-//    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-//        glVertex3f(cos(angle) * radius, sin(angle) * radius, 0);
-//    }
-//    glEnd();
+        double doublePI = PI * 2;
+        double duration = doublePI / slice;
+        double a, b;
+        glBegin(GL_TRIANGLE_FAN);
+        glTexCoord2f(0, 0);
+        glNormal3f(0, 0, 1);
+        glVertex3f(0, 0, height);
+        for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+            // need a normal vector
+            a = cos(angle);
+            b = sin(angle);
+            glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, 0);
+        }
+        glEnd();
 
-//    glBegin(GL_TRIANGLE_FAN);
-//    glVertex3f(0, 0, 0);
-//    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-//        glVertex3f(cos(angle) * radius, sin(angle) * radius, 0);
-//    }
-//    glEnd();
+        glBegin(GL_TRIANGLE_FAN);
+        glNormal3f(0, 0, -1);
+        glTexCoord2f(0.5, 0.5);
+        glVertex3f(0, 0, 0);
+        for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+            a = cos(angle);
+            b = sin(angle);
+            glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, 0);
+        }
+        glEnd();
 }
 
 void Cone::wireCone(double radius, double height, int slice)		// XY平面为底 Z轴正向为高的正方向
 {
-    GLUquadricObj *obj = gluNewQuadric();
-    gluQuadricDrawStyle(obj, GLU_LINE);
-    gluQuadricNormals(obj, GL_SMOOTH);
-    gluCylinder(obj, radius, 0, height, slice, 10);
-//    gluQuadricDrawStyle(obj, GLU_FILL);
-//    double doublePI = PI * 2;
-//    double duration = doublePI / slice;
-//    glBegin(GL_TRIANGLE_FAN);
-//    glVertex3f(0, 0, height);
-//    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-//        glVertex3f(cos(angle) * radius, sin(angle) * radius, 0);
-//    }
-//    glEnd();
+    double doublePI = PI * 2;
+    double duration = doublePI / slice;
+    double a, b;
+    glBegin(GL_LINE_LOOP);
+    glNormal3f(0, 0, 0);
+    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+        // need a normal vector
+        glVertex3f(0, 0, height);
+        a = cos(angle);
+        b = sin(angle);
+        glVertex3f(a * radius, b * radius, 0);
+    }
+    glEnd();
 
-//    glBegin(GL_TRIANGLE_FAN);
-//    glVertex3f(0, 0, 0);
-//    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-//        glVertex3f(cos(angle) * radius, sin(angle) * radius, 0);
-//    }
-//    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glNormal3f(0, 0, 0);
+    for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
+        a = cos(angle);
+        b = sin(angle);
+        glVertex3f(a * radius, b * radius, 0);
+    }
+    glEnd();
 }
 
 Cone::~Cone()
