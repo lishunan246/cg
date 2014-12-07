@@ -38,6 +38,8 @@ public:
     virtual void draw_current();
     QListWidgetItem* getlistltem();
     //void set_color(GLfloat* color4);
+
+    void cal_normal_vector(GLfloat * result, const float a[3], const float b[3]);
     void set_color(GLfloat* color4,bool is_diffuse=true,bool is_specular=true,bool is_ambient=true);
     void set_position(GLfloat* position3);
     void set_scale(GLfloat* scale3);

@@ -26,22 +26,22 @@ void Cylinder::solidCylinder(double radius, double height, int slice)		// XYå¹³é
 {
     double doublePI = PI * 2;
     double duration = doublePI / slice;
-    double a, b, a1, b1;
+    double xCurrent, yCurrent, xNext, yNext;
     glBegin(GL_TRIANGLES);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        a = cos(angle);
-        b = sin(angle);
-        a1 = cos(angle + duration);
-        b1 = sin(angle + duration);
+        xCurrent = cos(angle);
+        yCurrent = sin(angle);
+        xNext = cos(angle + duration);
+        yNext = sin(angle + duration);
 
         glNormal3f(cos(angle + duration / 2), sin(angle + duration / 2), 0);
-        glTexCoord2f(0, radius * angle / height); glVertex3f(a * radius, b * radius, 0);
-        glTexCoord2f(0, radius * (angle + duration) / height); glVertex3f(a1 * radius, b1 * radius, 0);
-        glTexCoord2f(1, radius * angle / height); glVertex3f(a * radius, b * radius, height);
+        glTexCoord2f(0, radius * angle / height); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
+        glTexCoord2f(0, radius * (angle + duration) / height); glVertex3f(xNext * radius, yNext * radius, 0);
+        glTexCoord2f(1, radius * angle / height); glVertex3f(xCurrent * radius, yCurrent * radius, height);
 
-        glTexCoord2f(1, radius * (angle + duration) / height); glVertex3f(a1 * radius, b1 * radius, height);
-        glTexCoord2f(1, radius * angle / height); glVertex3f(a * radius, b * radius, height);
-        glTexCoord2f(0, radius * (angle + duration) / height); glVertex3f(a1 * radius, b1 * radius, 0);
+        glTexCoord2f(1, radius * (angle + duration) / height); glVertex3f(xNext * radius, yNext * radius, height);
+        glTexCoord2f(1, radius * angle / height); glVertex3f(xCurrent * radius, yCurrent * radius, height);
+        glTexCoord2f(0, radius * (angle + duration) / height); glVertex3f(xNext * radius, yNext * radius, 0);
     }
     glEnd();
 
@@ -50,9 +50,9 @@ void Cylinder::solidCylinder(double radius, double height, int slice)		// XYå¹³é
     glTexCoord2f(0.5, 0.5);
     glVertex3f(0, 0, 0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        a = cos(angle);
-        b = sin(angle);
-        glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, 0);
+        xCurrent = cos(angle);
+        yCurrent = sin(angle);
+        glTexCoord2f(xCurrent / 2 + 0.5, yCurrent / 2 + 0.5); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
     }
     glEnd();
 
@@ -61,9 +61,9 @@ void Cylinder::solidCylinder(double radius, double height, int slice)		// XYå¹³é
     glTexCoord2f(0.5, 0.5);
     glVertex3f(0, 0, height);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        a = cos(angle);
-        b = sin(angle);
-        glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, height);
+        xCurrent = cos(angle);
+        yCurrent = sin(angle);
+        glTexCoord2f(xCurrent / 2 + 0.5, yCurrent / 2 + 0.5); glVertex3f(xCurrent * radius, yCurrent * radius, height);
     }
     glEnd();
 }

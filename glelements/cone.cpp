@@ -27,16 +27,25 @@ void Cone::solidCone(double radius, double height, int slice)		// XY平面为底
 {
         double doublePI = PI * 2;
         double duration = doublePI / slice;
-        double a, b;
+        double xCurrent, yCurrent, xNext, yNext;
         glBegin(GL_TRIANGLE_FAN);
         glTexCoord2f(0, 0);
         glNormal3f(0, 0, 1);
         glVertex3f(0, 0, height);
         for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-            // need a normal vector
-            a = cos(angle);
-            b = sin(angle);
-            glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, 0);
+            xCurrent = cos(angle);
+            yCurrent = sin(angle);
+            xNext = cos(angle + duration);
+            yNext = sin(angle + duration);
+
+            GLfloat * normalVector = new GLfloat[3];
+            float a[3] = {xCurrent * radius, yCurrent * radius, -height};
+            float b[3] = {xNext * radius, yNext * radius, -height};
+            cal_normal_vector(normalVector, a, b);
+            glNormal3fv(normalVector);
+
+            glTexCoord2f(xCurrent / 2 + 0.5, yCurrent / 2 + 0.5); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
+            delete [] normalVector;
         }
         glEnd();
 
@@ -45,9 +54,9 @@ void Cone::solidCone(double radius, double height, int slice)		// XY平面为底
         glTexCoord2f(0.5, 0.5);
         glVertex3f(0, 0, 0);
         for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-            a = cos(angle);
-            b = sin(angle);
-            glTexCoord2f(a / 2 + 0.5, b / 2 + 0.5); glVertex3f(a * radius, b * radius, 0);
+            xCurrent = cos(angle);
+            yCurrent = sin(angle);
+            glTexCoord2f(xCurrent / 2 + 0.5, yCurrent / 2 + 0.5); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
         }
         glEnd();
 }
@@ -60,7 +69,6 @@ void Cone::wireCone(double radius, double height, int slice)		// XY平面为底 
     glBegin(GL_LINE_LOOP);
     glNormal3f(0, 0, 0);
     for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
-        // need a normal vector
         glVertex3f(0, 0, height);
         a = cos(angle);
         b = sin(angle);

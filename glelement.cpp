@@ -38,6 +38,17 @@ QListWidgetItem* GLElement::getlistltem()
     return list_ltem;
 }
 
+void GLElement::cal_normal_vector(GLfloat * result, const float a[3], const float b[3])
+{
+    result[0] = a[1] * b[2] - a[2] * b[1];
+    result[1] = a[2] * b[0] - a[0] * b[2];
+    result[2] = a[0] * b[1] - a[1] * b[0];
+    double lengthOfVector = sqrt(result[0] * result[0] + result[1] * result[1] + result[2] * result[2]);
+    result[0] = result[0] / lengthOfVector;
+    result[1] = result[1] / lengthOfVector;
+    result[2] = result[2] / lengthOfVector;
+}
+
 void GLElement::set_color(GLfloat *color4, bool is_diffuse, bool is_specular, bool is_ambient)
 {
     if(is_diffuse)
