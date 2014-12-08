@@ -1,4 +1,5 @@
 #include "glelement.h"
+#include <iostream>
 
 int GLElement::counter=0;
 
@@ -17,6 +18,7 @@ GLElement::GLElement()
     shininess=0;
     rotate_angle=0.0;
     rotate_speed=0.0;
+    textureidx = -1;
     for(int i=0;i<4;i++)
     {
         diffuse_color[i]=1.0f;
@@ -112,6 +114,11 @@ void GLElement::set_rotate_speed(double speed)
     rotate_speed=speed;
 }
 
+void GLElement::set_texture_idx(int idx)
+{
+    textureidx = idx;
+}
+
 void GLElement::from_xml(QDomElement dom)
 {
     XMLHelper::getAttribute(&dom,"size",&size);
@@ -137,10 +144,19 @@ void GLElement::draw()
     glPushMatrix();
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
-
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
+    if (textureidx != -1)
+    {
+        glEnable(GL_TEXTURE_2D);
+        textureManager tm;
+        tm.bindTexture(textureidx);
+    }
+    else
+    {
+        glDisable(GL_TEXTURE_2D);
+    }
     just_draw_yourself(size,false);
 
     glPopMatrix();
@@ -151,10 +167,19 @@ void GLElement::draw_current()
     glPushMatrix();
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
-
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
+    if (textureidx != -1)
+    {
+        glEnable(GL_TEXTURE_2D);
+        textureManager tm;
+        tm.bindTexture(textureidx);
+    }
+    else
+    {
+        glDisable(GL_TEXTURE_2D);
+    }
     just_draw_yourself(size,true);
 
     glPopMatrix();

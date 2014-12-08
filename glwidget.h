@@ -25,6 +25,7 @@
 #include "vertice.h"
 #include "mtllib.h"
 #include "loadobj.h"
+#include "texturemanager.h"
 
 class GLWidget : public QGLWidget
 {
