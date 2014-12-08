@@ -332,7 +332,9 @@ void GLWidget::set_size()
 
 void GLWidget::set_texture()
 {
-    MainWindow::alert("textureeeeeeeeeeeeee!");
+    QString filename=MainWindow::open_file("BMP Files (*.bmp)");
+    if(filename==NULL)
+        return;
 }
 
 void GLWidget::set_rotate_angle()
