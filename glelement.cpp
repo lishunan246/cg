@@ -8,6 +8,7 @@ void GLElement::set_glMaterial()
     glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,specular_color);
     glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,ambient_color);
     glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diffuse_color);
+    glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shininess);
 }
 
 GLElement::GLElement()
@@ -19,13 +20,7 @@ GLElement::GLElement()
     rotate_angle=0.0;
     rotate_speed=0.0;
     textureidx = -1;
-    for(int i=0;i<4;i++)
-    {
-        diffuse_color[i]=1.0f;
-        ambient_color[i]=1.0f;
-        specular_color[i]=1.0f;
-        //color[i]=1.0f;
-    }
+
     for(int i=0;i<3;i++)
     {
         position[i]=0.0f;
@@ -74,6 +69,7 @@ void GLElement::set_color(GLfloat *color4, bool is_diffuse, bool is_specular, bo
             this->ambient_color[i]=*(color4+i);
         }
     }
+
 }
 
 

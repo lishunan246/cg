@@ -27,9 +27,9 @@ protected:
     virtual void just_draw_yourself(double size,bool isCurrent)=0;
 
 public:
-    GLfloat ambient_color[4];
-    GLfloat specular_color[4];
-    GLfloat diffuse_color[4];
+    GLfloat ambient_color[4] = {0.2f, 0.2f, 0.2f, 1.0f};
+    GLfloat specular_color[4] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat diffuse_color[4] = {0.8f, 0.8f, 0.8f, 1.0f};
 
     GLElement();
 

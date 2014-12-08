@@ -569,10 +569,11 @@ void GLWidget::loadfile()
 void GLWidget::initializeGL()
 {
     glClearColor(0.2,0.2,0.2,1);
-    glShadeModel(GL_FLAT);
+    glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
-//    glEnable(GL_TEXTURE_2D);
+    glDepthFunc(GL_LESS);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -583,8 +584,12 @@ void GLWidget::initializeGL()
 void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    gluPerspective(45,16.0 / 9,0.1,100);
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     glRotatef(rotate,0,1,0);
 
     for (GLElement* e:v)
