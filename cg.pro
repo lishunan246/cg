@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     glelements/prism.cpp \
     glelements/frustum.cpp \
     loadobj.cpp \
-    mtllib.cpp
+    mtllib.cpp \
+    texturemanager.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -49,7 +50,8 @@ HEADERS  += mainwindow.h \
     glelements/frustum.h \
     loadobj.h \
     mtllib.h \
-    vertice.h
+    vertice.h \
+    texturemanager.h
 
 FORMS    += mainwindow.ui \
     ui/colordialog.ui \
