@@ -137,6 +137,11 @@ void GLElement::from_xml(QDomElement dom)
     XMLHelper::getAttribute(&dom,"Xrotate",&Xrotate);
     XMLHelper::getAttribute(&dom,"Yrotate",&Yrotate);
     XMLHelper::getAttribute(&dom,"Zrotate",&Zrotate);
+    if(dom.hasAttribute("name"))
+    {
+        name=XMLHelper::getAttribute(&dom,"name");
+    }
+    list_ltem->setText(name);
 
     texture_dir = XMLHelper::getAttribute(&dom,"texture").toStdString();
 
@@ -211,6 +216,7 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
     //element.setAttribute("rotate_angle",rotate_angle);
     //element.setAttribute("rotate_speed",rotate_speed);
     element.setAttribute("shininess",shininess);
+    element.setAttribute("name",name);
 
     element.setAttribute("Xrotate",Xrotate);
     element.setAttribute("Yrotate",Yrotate);

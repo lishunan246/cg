@@ -245,7 +245,7 @@ void GLWidget::rename()
     }
 
     bool ok;
-    QString name=QInputDialog::getText(this,"Input name:","name",QLineEdit::Normal,currentElement->name,&ok);
+    QString name=QInputDialog::getText(NULL,"Input name:","name",QLineEdit::Normal,currentElement->name,&ok);
     if(ok)
     {
         currentElement->name=name;
