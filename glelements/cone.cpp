@@ -29,10 +29,7 @@ void Cone::solidCone(double radius, double height, int slice)		// XY平面为底
         double doublePI = PI * 2;
         double duration = doublePI / slice;
         double xCurrent, yCurrent, xNext, yNext;
-        glBegin(GL_TRIANGLE_FAN);
-        glTexCoord2f(0, 0);
-        glNormal3f(0, 0, 1);
-        glVertex3f(0, 0, height);
+        glBegin(GL_TRIANGLES);
         for (double angle = 0; angle < doublePI + 0.1; angle += duration) {
             xCurrent = cos(angle);
             yCurrent = sin(angle);
@@ -45,7 +42,9 @@ void Cone::solidCone(double radius, double height, int slice)		// XY平面为底
             cal_normal_vector(normalVector, a, b);
             glNormal3fv(normalVector);
 
-            glTexCoord2f(xCurrent / 2 + 0.5, yCurrent / 2 + 0.5); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
+            glTexCoord2f((angle / doublePI), 1); glVertex3f(0, 0, height);
+            glTexCoord2f((angle / doublePI), 0); glVertex3f(xCurrent * radius, yCurrent * radius, 0);
+            glTexCoord2f(((angle + duration) / doublePI), 0); glVertex3f(xNext * radius, yNext * radius, 0);
             delete [] normalVector;
         }
         glEnd();
