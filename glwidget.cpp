@@ -341,7 +341,8 @@ void GLWidget::set_texture()
         return;
     }
     textureManager tm;
-    currentElement->set_texture_idx(tm.loadTexture(filename.toStdString()));
+    tm.loadTexture(filename.toStdString());
+    currentElement->set_texture_dir(filename.toStdString());
     updateGL();
 }
 
@@ -584,12 +585,12 @@ void GLWidget::initializeGL()
 void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glMatrixMode(GL_PROJECTION);
+//    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45,16.0 / 9,0.1,100);
+//    gluPerspective(45,16.0 / 9,0.1,100);
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+//    glMatrixMode(GL_MODELVIEW);
+//    glLoadIdentity();
     glRotatef(rotate,0,1,0);
 
     for (GLElement* e:v)

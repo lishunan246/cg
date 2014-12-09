@@ -16,7 +16,7 @@ Sphere::Sphere()
 
 void Sphere::just_draw_yourself(double size, bool isCurrent)
 {
-//    glutSolidSphere(size,100,100);
+    glRotated(270,1,0,0);
     solidSphere(size,100,100);
     if(isCurrent)
     {

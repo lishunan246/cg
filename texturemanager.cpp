@@ -119,6 +119,11 @@ void textureManager::bindTexture(int textureid)
     glBindTexture(GL_TEXTURE_2D, textureArray[textureid]);
 }
 
+void textureManager::bindTexture(std::string texture_dir)
+{
+    glBindTexture(GL_TEXTURE_2D, textureArray[textureIndex.at(texture_dir)]);
+}
+
 void textureManager::loadAndbind(const std::string &filename)
 {
     bindTexture(loadTexture(filename));

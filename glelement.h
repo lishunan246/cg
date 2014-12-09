@@ -14,7 +14,7 @@ protected:
     static int index;
     const float current_scale=1.02;
 
-    int textureidx;
+    std::string texture_dir;
     GLfloat position[3];
     GLfloat scale[3];
     GLdouble size;
@@ -49,7 +49,8 @@ public:
     void set_shininess(int s);
     void set_rotate_angle(double angle);
     void set_rotate_speed(double speed);
-    void set_texture_idx(int idx);
+    void set_texture_dir(std::string dir);
+    void clear_texture();
 
     virtual QDomElement to_xml(QDomDocument* doc);
     virtual ~GLElement();

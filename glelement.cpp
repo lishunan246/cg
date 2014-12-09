@@ -19,7 +19,7 @@ GLElement::GLElement()
     shininess=0;
     rotate_angle=0.0;
     rotate_speed=0.0;
-    textureidx = -1;
+    texture_dir = "";
 
     for(int i=0;i<3;i++)
     {
@@ -110,9 +110,14 @@ void GLElement::set_rotate_speed(double speed)
     rotate_speed=speed;
 }
 
-void GLElement::set_texture_idx(int idx)
+void GLElement::set_texture_dir(std::string dir)
 {
-    textureidx = idx;
+    texture_dir = dir;
+}
+
+void GLElement::clear_texture()
+{
+    texture_dir = "";
 }
 
 void GLElement::from_xml(QDomElement dom)
@@ -143,16 +148,17 @@ void GLElement::draw()
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
-    if (textureidx != -1)
+    if (texture_dir != "")
     {
         glEnable(GL_TEXTURE_2D);
         textureManager tm;
-        tm.bindTexture(textureidx);
+        tm.bindTexture(texture_dir);
     }
     else
     {
         glDisable(GL_TEXTURE_2D);
     }
+
     just_draw_yourself(size,false);
 
     glPopMatrix();
@@ -166,11 +172,11 @@ void GLElement::draw_current()
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
-    if (textureidx != -1)
+    if (texture_dir != "")
     {
         glEnable(GL_TEXTURE_2D);
         textureManager tm;
-        tm.bindTexture(textureidx);
+        tm.bindTexture(texture_dir);
     }
     else
     {

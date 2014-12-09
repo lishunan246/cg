@@ -47,6 +47,7 @@ public:
     unsigned char *loadBitmapFile(const char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
     int loadTexture(const std::string &filename);
     void bindTexture(int textureid);
+    void bindTexture(std::string texture_dir);
     void loadAndbind(const std::string &filename);
 };
 
