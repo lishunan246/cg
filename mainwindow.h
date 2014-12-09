@@ -31,7 +31,7 @@ signals:
     void glelement_selected(QListWidgetItem* l);
 
 private slots:
-    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *);
 
 private:
     Ui::MainWindow *ui;

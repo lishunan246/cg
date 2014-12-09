@@ -114,6 +114,8 @@
     <addaction name="separator"/>
     <addaction name="menuTexture"/>
     <addaction name="separator"/>
+    <addaction name="actionSet_point_number"/>
+    <addaction name="separator"/>
     <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuTool">
@@ -358,6 +360,11 @@
     <string>Clear Texture</string>
    </property>
   </action>
+  <action name="actionSet_point_number">
+   <property name="text">
+    <string>Set point number</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -398,6 +405,7 @@
     <slot>add_cylinder()</slot>
     <slot>set_texture()</slot>
     <slot>clear_texture()</slot>
+    <slot>set_point_number()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -920,6 +928,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>clear_texture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSet_point_number</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>set_point_number()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

@@ -251,6 +251,29 @@ void GLWidget::set_color()
     return;
 }
 
+void GLWidget::set_point_number()
+{
+    if(currentElement==NULL)
+    {
+       MainWindow::alert("No element selected");
+       return;
+    }
+
+    if(currentElement->type!="frustum"&&currentElement->name!="prism")
+    {
+        MainWindow::alert("Only prisms and frustums are allowed to do this.");
+        return;
+    }
+
+    bool ok;
+    int t = QInputDialog::getInt(0, tr("Input a number:"),
+                 tr("Value:"), 4,3,100, 1, &ok);
+    if(ok)
+    {
+
+    }
+}
+
 void GLWidget::set_position()
 {
     bool ok;

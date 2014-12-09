@@ -120,9 +120,7 @@ void MainWindow::set_current(QListWidgetItem *l)
 }
 
 
-void MainWindow::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+void MainWindow::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *)
 {
-    //to remove warning only
-    previous++;
     emit glelement_selected(current);
 }
