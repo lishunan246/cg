@@ -137,6 +137,14 @@ void GLWidget::from_xml(QDomElement root)
                             delete l[index];
                             l[index]=light;
                         }
+                        else if(element.tagName()=="obj")
+                        {
+                            LoadObjs* s = new LoadObjs();
+                            s->from_xml(element);
+                            s->needtoselect = false;
+                            s->parse();
+                            add_element(s);
+                        }
                     }
 
                     node=node.nextSibling();
@@ -220,7 +228,10 @@ void GLWidget::load_obj()
     QString filename=MainWindow::open_file("OBJ Files (*.obj)");
     if(filename==NULL)
         return;
-    LoadObjs* Myobjs = new LoadObjs(filename.toStdString());
+    LoadObjs* Myobjs = new LoadObjs();
+    Myobjs->filepath = filename.toStdString();
+    Myobjs->needtoselect = true;    //need user to select a mtllib file,differ from xml import
+    Myobjs->parse();
     //RenderObjs(Myobjs);
     add_element(Myobjs);
 }
@@ -348,7 +359,13 @@ void GLWidget::set_texture()
 
 void GLWidget::clear_texture()
 {
-    MainWindow::alert("cleartexture");
+//    MainWindow::alert("cleartexture");
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+    currentElement->clear_texture();
 }
 
 void GLWidget::set_rotate_angle()

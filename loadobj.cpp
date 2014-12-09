@@ -224,11 +224,22 @@ void RenderObj(LoadObj& obj, mtllib* lib)
 int LoadObjs::counter = 0;
 int LoadObjs::index=0;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-LoadObjs::LoadObjs(string filepath)
+
+LoadObjs::LoadObjs()
+{
+    counter++;
+    index++;
+    type="obj";
+    name=type+QString::number(index);
+    delete list_ltem;
+    list_ltem =new QListWidgetItem(name);
+}
+
+void LoadObjs::parse()
 {
     this->hasmtllib = false;
     this->num = 0;
-    this->filepath = filepath;
+    //this->filepath = filepath;
     //MainWindow::alert(this->filepath.c_str());
     //FILE * fptr;
     char header[32];
@@ -249,11 +260,15 @@ LoadObjs::LoadObjs(string filepath)
             this->hasmtllib = true;
             char temp[32];
             fscanf(fptr, "%s\n", temp);
-            MainWindow::alert("The obj file you selected contains material infomation,you should then select a material file. ");
-            QString filename=MainWindow::open_file("MTL Files (*.mtl)");
-            if(filename==NULL)
-                return;
-            this->mtllibpath = filename.toStdString();
+            if(needtoselect)
+            {
+                MainWindow::alert("The obj file you selected contains material infomation,you should then select a material file. ");
+                QString filename=MainWindow::open_file("MTL Files (*.mtl)");
+                if(filename==NULL)
+                    return;
+                this->mtllibpath = filename.toStdString();
+            }
+
             this-> lib = new mtllib(mtllibpath);
            // break;
         }
@@ -283,12 +298,7 @@ LoadObjs::LoadObjs(string filepath)
         this->num++;
     }
     fclose(fptr);
-    counter++;
-    index++;
-    type="obj";
-    name=type+QString::number(index);
-    delete list_ltem;
-    list_ltem =new QListWidgetItem(name);
+
 }
 
 
@@ -335,4 +345,25 @@ void RenderObjs(LoadObjs& objs)
     }
 }
 */
+
+
+QDomElement LoadObjs::to_xml(QDomDocument *doc)
+{
+    QDomElement temp = GLElement::to_xml(doc);
+    temp.setAttribute("filepath",QString::fromStdString(this->filepath));   //save the obj file path to xml
+    temp.setAttribute("mtllibpath",QString::fromStdString(this->mtllibpath));   //save the obj file path to xml
+    return temp;
+}
+
+void LoadObjs::from_xml(QDomElement dom)
+{
+    GLElement::from_xml(dom);
+    QString t1,t2;
+    t1 = XMLHelper::getAttribute(&dom,"filepath");
+    t2 =  XMLHelper::getAttribute(&dom,"mtllibpath");
+    this->filepath = t1.toStdString();
+    this->mtllibpath = t2.toStdString();
+
+}
+
 
