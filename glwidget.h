@@ -81,6 +81,9 @@ protected:
     void paintGL();
     void resizeGL(int w,int h);
     void mouseDoubleClickEvent(QMouseEvent *mouse);
+    void mousePressEvent(QMouseEvent *mouse);
+    void mouseReleaseEvent(QMouseEvent *mouse);
+    void mouseMoveEvent(QMouseEvent *mouse);
 protected:
     QTimer timer;
 private:
@@ -88,6 +91,10 @@ private:
     double eye[3];
     double thing[3];
     int rotate;
+
+    bool rotateMode=false;
+    int lastXPos,lastYPos;
+
     std::vector<GLElement*> v;
     Light* l[8];
     void get_OGLPos(int x,int y);

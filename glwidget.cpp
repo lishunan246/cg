@@ -645,6 +645,34 @@ void GLWidget::mouseDoubleClickEvent(QMouseEvent * mouse)
     MainWindow::alert(s+", "+b);
 }
 
+void GLWidget::mousePressEvent(QMouseEvent *mouse)
+{
+    if(mouse->button()==Qt::LeftButton)
+    {
+        rotateMode=true;
+        lastXPos=mouse->pos().x();
+        lastYPos=mouse->pos().y();
+    }
+
+}
+
+void GLWidget::mouseReleaseEvent(QMouseEvent *mouse)
+{
+    if(mouse->button()==Qt::LeftButton)
+        rotateMode=false;
+}
+
+void GLWidget::mouseMoveEvent(QMouseEvent *mouse)
+{
+    if(!rotateMode)
+        return;
+    if(currentElement==NULL)
+        return;
+
+    currentElement->Xrotate+=(mouse->pos().x()-lastXPos)/50.0;
+    currentElement->Yrotate-=(mouse->pos().y()-lastYPos)/50.0;
+}
+
 void GLWidget::get_OGLPos(int x, int y)
 {
     GLint viewport[4];                  // Where The Viewport Values Will Be Stored

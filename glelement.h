@@ -23,13 +23,20 @@ protected:
     QString type,name;
     QListWidgetItem* list_ltem;
 
+
+
     void set_glMaterial();
+    void set_glRotate();
     virtual void just_draw_yourself(double size,bool isCurrent)=0;
 
 public:
     GLfloat ambient_color[4] = {0.2f, 0.2f, 0.2f, 1.0f};
     GLfloat specular_color[4] = {0.0f, 0.0f, 0.0f, 1.0f};
     GLfloat diffuse_color[4] = {0.8f, 0.8f, 0.8f, 1.0f};
+
+    GLdouble Xrotate=0;
+    GLdouble Yrotate=0;
+    GLdouble Zrotate=0;
 
     GLElement();
 

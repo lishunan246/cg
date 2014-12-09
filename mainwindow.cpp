@@ -43,6 +43,11 @@ void MainWindow::alert(QString s)
     return;
 }
 
+void MainWindow::showMessage(QString s, int time)
+{
+    ui->statusBar->showMessage(s,time);
+}
+
 QString MainWindow::new_file(QString filter,QString type)
 {
     QStringList fileNames;
@@ -117,5 +122,7 @@ void MainWindow::set_current(QListWidgetItem *l)
 
 void MainWindow::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
+    //to remove warning only
+    previous++;
     emit glelement_selected(current);
 }

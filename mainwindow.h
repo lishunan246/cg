@@ -18,6 +18,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     static void alert(QString s);
+    void showMessage(QString s,int time=0);
     static QString new_file(QString filter, QString type);
     static QString open_file(QString filter);
 

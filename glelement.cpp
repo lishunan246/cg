@@ -11,6 +11,13 @@ void GLElement::set_glMaterial()
     glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shininess);
 }
 
+void GLElement::set_glRotate()
+{
+    glRotated(Xrotate,0,1,0);
+    glRotated(Yrotate,1,0,0);
+    glRotated(Zrotate,0,0,1);
+}
+
 GLElement::GLElement()
 {
     counter++;
@@ -146,8 +153,9 @@ void GLElement::draw()
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
     glScalef(scale[0],scale[1],scale[2]);
-    rotate_angle+=rotate_speed;
-    glRotated(rotate_angle,0,1,0);
+    //rotate_angle+=rotate_speed;
+    //glRotated(rotate_angle,0,1,0);
+    set_glRotate();
     if (texture_dir != "")
     {
         glEnable(GL_TEXTURE_2D);
@@ -170,8 +178,9 @@ void GLElement::draw_current()
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
     glScalef(scale[0],scale[1],scale[2]);
-    rotate_angle+=rotate_speed;
-    glRotated(rotate_angle,0,1,0);
+    //rotate_angle+=rotate_speed;
+    //glRotated(rotate_angle,0,1,0);
+    set_glRotate();
     if (texture_dir != "")
     {
         glEnable(GL_TEXTURE_2D);
