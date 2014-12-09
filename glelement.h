@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include <QtXml>
 #include "xmlhelper.h"
+#include "texturemanager.h"
 class GLElement
 {
 
@@ -13,6 +14,7 @@ protected:
     static int index;
     const float current_scale=1.02;
 
+    std::string texture_dir;
     GLfloat position[3];
     GLfloat scale[3];
     GLdouble size;
@@ -25,9 +27,9 @@ protected:
     virtual void just_draw_yourself(double size,bool isCurrent)=0;
 
 public:
-    GLfloat ambient_color[4];
-    GLfloat specular_color[4];
-    GLfloat diffuse_color[4];
+    GLfloat ambient_color[4] = {0.2f, 0.2f, 0.2f, 1.0f};
+    GLfloat specular_color[4] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat diffuse_color[4] = {0.8f, 0.8f, 0.8f, 1.0f};
 
     GLElement();
 
@@ -47,6 +49,8 @@ public:
     void set_shininess(int s);
     void set_rotate_angle(double angle);
     void set_rotate_speed(double speed);
+    void set_texture_dir(std::string dir);
+    void clear_texture();
 
     virtual QDomElement to_xml(QDomDocument* doc);
     virtual ~GLElement();

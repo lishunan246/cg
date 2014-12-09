@@ -14,7 +14,6 @@ Cube::Cube()
 
 void Cube::just_draw_yourself(double size, bool isCurrent)
 {
-//    glutSolidCube(size);
     solidCube(size);
     if(isCurrent)
     {

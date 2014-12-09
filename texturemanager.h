@@ -36,16 +36,18 @@ typedef struct tagBITMAPINFOHEADER{
 
 class textureManager
 {
-    static GLuint * textureArray;
     static std::map<std::string, GLuint> textureIndex;
+    static GLuint * textureArray;
     static int textureCount;
     static int objectCount;
 public:
-    textureManager(int maxNum = 100);
+    textureManager(int maxNum);
+    textureManager();
     ~textureManager();
     unsigned char *loadBitmapFile(const char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
     int loadTexture(const std::string &filename);
-    void bindTexture(GLuint textureid);
+    void bindTexture(int textureid);
+    void bindTexture(std::string texture_dir);
     void loadAndbind(const std::string &filename);
 };
 

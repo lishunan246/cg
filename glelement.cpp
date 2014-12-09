@@ -1,4 +1,5 @@
 #include "glelement.h"
+#include <iostream>
 
 int GLElement::counter=0;
 
@@ -7,6 +8,7 @@ void GLElement::set_glMaterial()
     glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,specular_color);
     glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,ambient_color);
     glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diffuse_color);
+    glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shininess);
 }
 
 GLElement::GLElement()
@@ -17,13 +19,8 @@ GLElement::GLElement()
     shininess=0;
     rotate_angle=0.0;
     rotate_speed=0.0;
-    for(int i=0;i<4;i++)
-    {
-        diffuse_color[i]=1.0f;
-        ambient_color[i]=1.0f;
-        specular_color[i]=1.0f;
-        //color[i]=1.0f;
-    }
+    texture_dir = "";
+
     for(int i=0;i<3;i++)
     {
         position[i]=0.0f;
@@ -72,6 +69,7 @@ void GLElement::set_color(GLfloat *color4, bool is_diffuse, bool is_specular, bo
             this->ambient_color[i]=*(color4+i);
         }
     }
+
 }
 
 
@@ -112,6 +110,16 @@ void GLElement::set_rotate_speed(double speed)
     rotate_speed=speed;
 }
 
+void GLElement::set_texture_dir(std::string dir)
+{
+    texture_dir = dir;
+}
+
+void GLElement::clear_texture()
+{
+    texture_dir = "";
+}
+
 void GLElement::from_xml(QDomElement dom)
 {
     XMLHelper::getAttribute(&dom,"size",&size);
@@ -137,10 +145,20 @@ void GLElement::draw()
     glPushMatrix();
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
-
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
+    if (texture_dir != "")
+    {
+        glEnable(GL_TEXTURE_2D);
+        textureManager tm;
+        tm.bindTexture(texture_dir);
+    }
+    else
+    {
+        glDisable(GL_TEXTURE_2D);
+    }
+
     just_draw_yourself(size,false);
 
     glPopMatrix();
@@ -151,10 +169,19 @@ void GLElement::draw_current()
     glPushMatrix();
     glTranslatef(position[0],position[1],position[2]);
     set_glMaterial();
-
     glScalef(scale[0],scale[1],scale[2]);
     rotate_angle+=rotate_speed;
     glRotated(rotate_angle,0,1,0);
+    if (texture_dir != "")
+    {
+        glEnable(GL_TEXTURE_2D);
+        textureManager tm;
+        tm.bindTexture(texture_dir);
+    }
+    else
+    {
+        glDisable(GL_TEXTURE_2D);
+    }
     just_draw_yourself(size,true);
 
     glPopMatrix();

@@ -14,6 +14,7 @@ Cylinder :: Cylinder()
 
 void Cylinder::just_draw_yourself(double size,bool isCurrent)
 {
+    glRotated(270,1,0,0);
     solidCylinder(size, size);
     if (isCurrent)
     {

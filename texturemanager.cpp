@@ -15,6 +15,16 @@ textureManager::textureManager(int maxNum)
     }
 }
 
+textureManager::textureManager()
+{
+    objectCount++;
+    if (textureArray == nullptr)
+    {
+        textureArray = new GLuint[100];
+        glGenTextures(100, textureArray);
+    }
+}
+
 textureManager::~textureManager()
 {
     objectCount--;
@@ -85,10 +95,10 @@ int textureManager::loadTexture(const std::string &filename)
         unsigned char*   bitmapData;                                       // 纹理数据
 
         bitmapData = loadBitmapFile(filename.c_str(), &bitmapInfoHeader);
-        // glBindTexture(GL_TEXTURE_2D, texture[i]);
+        glBindTexture(GL_TEXTURE_2D, textureArray[textureCount]);
         // 指定当前纹理的放大/缩小过滤方式
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
         glTexImage2D(GL_TEXTURE_2D,
             0, 	    //mipmap层次(通常为，表示最上层)
@@ -104,9 +114,14 @@ int textureManager::loadTexture(const std::string &filename)
     }
 }
 
-void textureManager::bindTexture(GLuint textureid)
+void textureManager::bindTexture(int textureid)
 {
     glBindTexture(GL_TEXTURE_2D, textureArray[textureid]);
+}
+
+void textureManager::bindTexture(std::string texture_dir)
+{
+    glBindTexture(GL_TEXTURE_2D, textureArray[textureIndex.at(texture_dir)]);
 }
 
 void textureManager::loadAndbind(const std::string &filename)
