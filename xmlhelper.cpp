@@ -147,3 +147,14 @@ QString XMLHelper::getAttribute(QDomElement *dom, QString name)
         return "";
     }
 }
+
+/*
+void XMLHelper::getAttribute(QDomElement *dom, QString name, QString* a)
+{
+    if(dom->hasAttribute(name))
+    {
+        std::string t=dom->attribute(name).toStdString();
+        *a=QString::fromStdString(t);
+    }
+}
+*/

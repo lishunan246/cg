@@ -80,7 +80,8 @@ void RenderObj(LoadObj &obj, mtllib* lib);
 class LoadObjs:public GLElement
 {
 public:
-    LoadObjs(string filepath);
+    LoadObjs();
+   void  parse();
     ~LoadObjs();
     int size();
     LoadObj getObj(int index);
@@ -89,14 +90,21 @@ public:
         return lib;
     }
     void just_draw_yourself(double size,bool isCurrent);
+    void from_xml(QDomElement dom);
+    QDomElement to_xml(QDomDocument* doc);
 
+
+public:
+    int hasmtllib;
+    string filepath;
+    string mtllibpath;
+    bool needtoselect;
 private:
     static int counter;
     static int index;
-    bool hasmtllib;
+
     int num;
-    string filepath;
-    string mtllibpath;
+
     vector<LoadObj> Obj;
     mtllib* lib;
 };
