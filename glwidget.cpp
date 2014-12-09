@@ -436,25 +436,24 @@ void GLWidget::set_rotate_angle()
 }
 
 void GLWidget::set_rotate_speed()
-{
-    MainWindow::alert("Function abandoned");
-//    bool ok;
-//    GLdouble temp;
+{    
+    bool ok;
+    GLdouble temp;
 
-//    if(currentElement==NULL)
-//    {
-//        MainWindow::alert("No element selected");
-//        return;
-//    }
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
 
-//   double t = QInputDialog::getDouble(0, tr("Input rotate speed"),
-//                tr("Value:"), 1.00, -10000, 10000, 2, &ok);
-//   if (ok)
-//       temp=t;
-//   else
-//       return;
-//    currentElement->set_rotate_speed(temp);
-//    updateGL();
+   double t = QInputDialog::getDouble(0, tr("Input rotate speed"),
+                tr("Value:"), currentElement->rotate_speed, -10000, 10000, 2, &ok);
+   if (ok)
+       temp=t;
+   else
+       return;
+    currentElement->rotate_speed=temp;
+    updateGL();
 }
 
 void GLWidget::set_current(QListWidgetItem *l)
@@ -709,6 +708,9 @@ void GLWidget::mousePressEvent(QMouseEvent *mouse)
 {
     if(mouse->button()==Qt::LeftButton)
     {
+
+        currentElement->rotate_speed=0;
+
         rotateMode=true;
         lastXPos=mouse->pos().x();
         lastYPos=mouse->pos().y();

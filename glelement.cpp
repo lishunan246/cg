@@ -13,6 +13,7 @@ void GLElement::set_glMaterial()
 
 void GLElement::set_glRotate()
 {
+    Xrotate+=rotate_speed;
     glRotated(Xrotate,0,1,0);
     glRotated(Yrotate,1,0,0);
     glRotated(Zrotate,0,0,1);
@@ -130,7 +131,7 @@ void GLElement::clear_texture()
 void GLElement::from_xml(QDomElement dom)
 {
     XMLHelper::getAttribute(&dom,"size",&size);
-    //XMLHelper::getAttribute(&dom,"rotate_speed",&rotate_speed);
+    XMLHelper::getAttribute(&dom,"rotate_speed",&rotate_speed);
     //XMLHelper::getAttribute(&dom,"rotate_angle",&rotate_angle);
     XMLHelper::getAttribute(&dom,"shininess",&shininess);
 
@@ -214,7 +215,7 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
     QDomElement element=doc->createElement(type);
     element.setAttribute("size",size);
     //element.setAttribute("rotate_angle",rotate_angle);
-    //element.setAttribute("rotate_speed",rotate_speed);
+    element.setAttribute("rotate_speed",rotate_speed);
     element.setAttribute("shininess",shininess);
     element.setAttribute("name",name);
 

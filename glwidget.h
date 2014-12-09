@@ -17,7 +17,6 @@
 #include "glelement.h"
 #include "mainwindow.h"
 #include "glelements.h"
-#include "objhandler.h"
 #include "ui/colordialog.h"
 #include "ui/lightdialog.h"
 #include "light.h"

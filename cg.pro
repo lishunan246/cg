@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     glelements/cube.cpp \
     glelements/teapot.cpp \
     glelements/sphere.cpp \
-    objhandler.cpp \
     ui/colordialog.cpp \
     light.cpp \
     xmlhelper.cpp \
@@ -39,7 +38,6 @@ HEADERS  += mainwindow.h \
     glelements.h \
     glelements/teapot.h \
     glelements/sphere.h \
-    objhandler.h \
     ui/colordialog.h \
     light.h \
     xmlhelper.h \
