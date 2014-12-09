@@ -348,7 +348,13 @@ void GLWidget::set_texture()
 
 void GLWidget::clear_texture()
 {
-    MainWindow::alert("cleartexture");
+//    MainWindow::alert("cleartexture");
+    if(currentElement==NULL)
+    {
+        MainWindow::alert("No element selected");
+        return;
+    }
+    currentElement->clear_texture();
 }
 
 void GLWidget::set_rotate_angle()

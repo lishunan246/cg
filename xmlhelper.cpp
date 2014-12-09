@@ -135,3 +135,15 @@ void XMLHelper::getAttribute(QDomElement *dom, QString name, float *a)
         *a=dom->attribute(name).toFloat();
     }
 }
+
+QString XMLHelper::getAttribute(QDomElement *dom, QString name)
+{
+    if(dom->hasAttribute(name))
+    {
+        return dom->attribute(name);
+    }
+    else
+    {
+        return "";
+    }
+}

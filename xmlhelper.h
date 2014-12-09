@@ -17,6 +17,7 @@ public:
     static void getAttribute(QDomElement* dom,QString name,double* a);
     static void getAttribute(QDomElement* dom,QString name,int* a);
     static void getAttribute(QDomElement* dom,QString name,float* a);
+    static QString getAttribute(QDomElement* dom,QString name);
 
 };
 
