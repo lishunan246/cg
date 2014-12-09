@@ -130,9 +130,12 @@ void GLElement::clear_texture()
 void GLElement::from_xml(QDomElement dom)
 {
     XMLHelper::getAttribute(&dom,"size",&size);
-    XMLHelper::getAttribute(&dom,"rotate_speed",&rotate_speed);
-    XMLHelper::getAttribute(&dom,"rotate_angle",&rotate_angle);
+    //XMLHelper::getAttribute(&dom,"rotate_speed",&rotate_speed);
+    //XMLHelper::getAttribute(&dom,"rotate_angle",&rotate_angle);
     XMLHelper::getAttribute(&dom,"shininess",&shininess);
+    XMLHelper::getAttribute(&dom,"Xrotate",&Xrotate);
+    XMLHelper::getAttribute(&dom,"Yrotate",&Yrotate);
+    XMLHelper::getAttribute(&dom,"Zrotate",&Zrotate);
 
     QDomNode node=dom.firstChild();
     while(!node.isNull())
@@ -201,9 +204,13 @@ QDomElement GLElement::to_xml(QDomDocument *doc)
 {
     QDomElement element=doc->createElement(type);
     element.setAttribute("size",size);
-    element.setAttribute("rotate_angle",rotate_angle);
-    element.setAttribute("rotate_speed",rotate_speed);
+    //element.setAttribute("rotate_angle",rotate_angle);
+    //element.setAttribute("rotate_speed",rotate_speed);
     element.setAttribute("shininess",shininess);
+    element.setAttribute("Xrotate",Xrotate);
+    element.setAttribute("Yrotate",Yrotate);
+    element.setAttribute("Zrotate",Zrotate);
+
 
     element.appendChild(XMLHelper::to_xml(doc,"position",position,3));
     element.appendChild(XMLHelper::to_xml(doc,"scale",scale,3));
