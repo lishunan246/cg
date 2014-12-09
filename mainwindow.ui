@@ -97,14 +97,22 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuTexture">
+     <property name="title">
+      <string>Texture</string>
+     </property>
+     <addaction name="actionSet_texture"/>
+     <addaction name="actionClear_Texture"/>
+    </widget>
     <addaction name="actionSet_color"/>
     <addaction name="actionSet_position"/>
     <addaction name="actionSet_scale"/>
     <addaction name="actionSet_size"/>
-    <addaction name="actionSet_texture"/>
     <addaction name="actionSet_rotate_angle"/>
     <addaction name="actionSet_rotate_speed"/>
     <addaction name="actionSet_shininess"/>
+    <addaction name="separator"/>
+    <addaction name="menuTexture"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
    </widget>
@@ -345,6 +353,11 @@
     <string>Cylinder</string>
    </property>
   </action>
+  <action name="actionClear_Texture">
+   <property name="text">
+    <string>Clear Texture</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -384,6 +397,7 @@
     <slot>config_light()</slot>
     <slot>add_cylinder()</slot>
     <slot>set_texture()</slot>
+    <slot>clear_texture()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -890,6 +904,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>set_texture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClear_Texture</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>clear_texture()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

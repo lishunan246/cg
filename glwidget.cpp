@@ -337,6 +337,11 @@ void GLWidget::set_texture()
         return;
 }
 
+void GLWidget::clear_texture()
+{
+    MainWindow::alert("cleartexture");
+}
+
 void GLWidget::set_rotate_angle()
 {
     bool ok;
@@ -568,6 +573,7 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL()
 {
+    qDebug()<<"dd"<<endl;
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     gluLookAt(eye[0],eye[1],eye[2],thing[0],thing[1],thing[2],0,1,0);
