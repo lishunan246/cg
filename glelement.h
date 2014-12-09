@@ -20,7 +20,7 @@ protected:
     GLdouble size;
     int shininess;
     GLdouble rotate_angle,rotate_speed;
-    QString type,name;
+
     QListWidgetItem* list_ltem;
 
 
@@ -37,6 +37,8 @@ public:
     GLdouble Xrotate=0;
     GLdouble Yrotate=0;
     GLdouble Zrotate=0;
+
+    QString type,name;
 
     GLElement();
 
