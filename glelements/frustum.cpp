@@ -97,13 +97,13 @@ void Frustum::SolidFrustum(double size)		// XY平面为底 Z轴正向为高的�
         glNormal3fv(normalVector);
 
         // right up triangle
-        glTexCoord2f(1, 0); glVertex3f(xCurrent * size, yCurrent * size, 0);
-        glTexCoord2f(1, 1); glVertex3f(xCurrent * uppersize, yCurrent * uppersize, height);
-        glTexCoord2f(0, 1); glVertex3f(xNext * uppersize, yNext * uppersize, height);
+        glTexCoord2f(0, 0); glVertex3f(xCurrent * size, yCurrent * size, 0);
+        glTexCoord2f(0, 1); glVertex3f(xCurrent * uppersize, yCurrent * uppersize, height);
+        glTexCoord2f(1, 1); glVertex3f(xNext * uppersize, yNext * uppersize, height);
         // left down triangle
-        glTexCoord2f(0, 0); glVertex3f(xNext * size, yNext * size, 0);
-        glTexCoord2f(1, 0); glVertex3f(xCurrent * size, yCurrent * size, 0);
-        glTexCoord2f(0, 1); glVertex3f(xNext * uppersize, yNext * uppersize, height);
+        glTexCoord2f(1, 0); glVertex3f(xNext * size, yNext * size, 0);
+        glTexCoord2f(0, 0); glVertex3f(xCurrent * size, yCurrent * size, 0);
+        glTexCoord2f(1, 1); glVertex3f(xNext * uppersize, yNext * uppersize, height);
         delete [] normalVector;
     }
     glEnd();
