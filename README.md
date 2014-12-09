@@ -1,10 +1,10 @@
 cg -- A Qt and OpenGL program
 ==
 
-##Build with:
+#Build with:
 * Ubuntu 1410 32-bit
 * Qt 5.3
-* gcc x86
+* gcc 
 * freeglut
 
 
@@ -12,3 +12,13 @@ cg -- A Qt and OpenGL program
 ```
 sudo apt-get install freeglut3-dev
 ```
+
+#Features
+* add and delete basic objects
+* change color, position and scale of an object
+* rotate an object by mouse 
+* set texture for an object
+* load a .obj file as an object
+* save and load as an xml file
+* configure up to 8 light sources
+
