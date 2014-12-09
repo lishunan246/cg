@@ -46,6 +46,7 @@ public slots:
     void zoom_in();
     void zoom_out();
     void load_obj();
+    void rename();
     void set_color();
     void set_point_number();
     void set_position();

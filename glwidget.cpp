@@ -236,6 +236,23 @@ void GLWidget::load_obj()
     add_element(Myobjs);
 }
 
+void GLWidget::rename()
+{
+    if(currentElement==NULL)
+    {
+       MainWindow::alert("No element selected");
+       return;
+    }
+
+    bool ok;
+    QString name=QInputDialog::getText(this,"Input name:","name",QLineEdit::Normal,currentElement->name,&ok);
+    if(ok)
+    {
+        currentElement->name=name;
+        currentElement->getlistltem()->setText(name);
+    }
+}
+
 void GLWidget::set_color()
 {
     if(currentElement==NULL)

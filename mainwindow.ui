@@ -116,6 +116,7 @@
     <addaction name="separator"/>
     <addaction name="actionSet_point_number"/>
     <addaction name="separator"/>
+    <addaction name="actionRename"/>
     <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuTool">
@@ -365,6 +366,14 @@
     <string>Set point number</string>
    </property>
   </action>
+  <action name="actionRename">
+   <property name="text">
+    <string>Rename</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -406,6 +415,7 @@
     <slot>set_texture()</slot>
     <slot>clear_texture()</slot>
     <slot>set_point_number()</slot>
+    <slot>rename()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -944,6 +954,22 @@
    <signal>triggered()</signal>
    <receiver>widget</receiver>
    <slot>set_point_number()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRename</sender>
+   <signal>triggered()</signal>
+   <receiver>widget</receiver>
+   <slot>rename()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
