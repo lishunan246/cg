@@ -276,7 +276,7 @@ void GLWidget::set_point_number()
        return;
     }
 
-    if(currentElement->type!="frustum"&&currentElement->name!="prism")
+    if(currentElement->type!="frustum"&&currentElement->type!="prism")
     {
         MainWindow::alert("Only prisms and frustums are allowed to do this.");
         return;
@@ -287,7 +287,14 @@ void GLWidget::set_point_number()
                  tr("Value:"), 4,3,100, 1, &ok);
     if(ok)
     {
-
+        if (currentElement->type == "frustum")
+        {
+            dynamic_cast<Frustum *>(currentElement)->set_pointNum(t);
+        }
+        else
+        {
+            dynamic_cast<Prism *>(currentElement)->set_pointNum(t);
+        }
     }
 }
 
