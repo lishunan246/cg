@@ -382,7 +382,6 @@ void GLWidget::set_texture()
 
 void GLWidget::clear_texture()
 {
-//    MainWindow::alert("cleartexture");
     if(currentElement==NULL)
     {
         MainWindow::alert("No element selected");
@@ -499,21 +498,18 @@ void GLWidget::add_sphere()
 
 void GLWidget::add_cone()
 {
-//    MainWindow::alert("CONE");
     Cone* cone=new Cone();
     add_element(cone);
 }
 
 void GLWidget::add_prism()
 {
-//    MainWindow::alert("PRISM");
     Prism* prism = new Prism();
     add_element(prism);
 }
 
 void GLWidget::add_frustum()
 {
-//    MainWindow::alert("FRUSTUM");
     Frustum* frustum=new Frustum();
     add_element(frustum);
 }
@@ -630,7 +626,6 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL()
 {
-    qDebug()<<"dd"<<endl;
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 //    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
