@@ -685,7 +685,7 @@ void GLWidget::resizeGL(int w, int h)
     if(h==0)h=1;
     float ratio=(GLfloat)w/(GLfloat)h;
 
-    gluPerspective(45,ratio,0.1,100);
+    gluPerspective(45,ratio,0.1,500);
     //gluOrtho(-5,5,-5,5,0,100);
 
     glMatrixMode(GL_MODELVIEW);

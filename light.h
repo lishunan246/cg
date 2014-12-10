@@ -11,7 +11,7 @@ private:
     GLenum name;
     int index;
 public:
-    GLfloat ambient_color[4]={0,0,0,1};
+    GLfloat ambient_color[4]={1,1,1,1};
     GLfloat specular_color[4]={1,1,1,1};
     GLfloat diffuse_color[4]={1,1,1,1};
     GLfloat position[4]={0,0,1,0};
