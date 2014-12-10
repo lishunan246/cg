@@ -10,6 +10,7 @@ GLWidget::GLWidget(QWidget *parent) :
     clear();
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
+    this->showFullScreen();
 }
 
 void GLWidget::clear()
@@ -706,7 +707,9 @@ void GLWidget::mouseDoubleClickEvent(QMouseEvent * mouse)
 
 void GLWidget::mousePressEvent(QMouseEvent *mouse)
 {
-    if(mouse->button()==Qt::LeftButton)
+    if(currentElement==NULL)
+        return;
+    if(mouse->button()==Qt::RightButton)
     {
 
         currentElement->rotate_speed=0;
@@ -720,7 +723,7 @@ void GLWidget::mousePressEvent(QMouseEvent *mouse)
 
 void GLWidget::mouseReleaseEvent(QMouseEvent *mouse)
 {
-    if(mouse->button()==Qt::LeftButton)
+    if(mouse->button()==Qt::RightButton)
         rotateMode=false;
 }
 
@@ -731,8 +734,14 @@ void GLWidget::mouseMoveEvent(QMouseEvent *mouse)
     if(currentElement==NULL)
         return;
 
-    currentElement->Xrotate+=(mouse->pos().x()-lastXPos)/50.0;
-    currentElement->Yrotate-=(mouse->pos().y()-lastYPos)/50.0;
+    int x=mouse->pos().x();
+    int y=mouse->pos().y();
+
+    currentElement->Xrotate+=(x-lastXPos)/10.0;
+    currentElement->Yrotate+=(y-lastYPos)/10.0;
+    lastXPos=x;
+    lastYPos=y;
+
 }
 
 void GLWidget::get_OGLPos(int x, int y)
