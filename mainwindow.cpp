@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
                        this,
                        SLOT(set_current(QListWidgetItem*))
                        );
+    this->showMaximized();
 }
 
 MainWindow::~MainWindow()

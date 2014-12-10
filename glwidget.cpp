@@ -10,7 +10,7 @@ GLWidget::GLWidget(QWidget *parent) :
     clear();
     connect(&timer,SIGNAL(timeout()),this,SLOT(updateGL()));
     timer.start(50);
-    this->showFullScreen();
+
 }
 
 void GLWidget::clear()
