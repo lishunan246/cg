@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     glelements/cone.cpp \
     glelements/cylinder.cpp \
     glelements/prism.cpp \
-    glelements/frustum.cpp
+    glelements/frustum.cpp \
+    loadobj.cpp \
+    mtllib.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -44,7 +46,10 @@ HEADERS  += mainwindow.h \
     glelements/cone.h \
     glelements/cylinder.h \
     glelements/prism.h \
-    glelements/frustum.h
+    glelements/frustum.h \
+    loadobj.h \
+    mtllib.h \
+    vertice.h
 
 FORMS    += mainwindow.ui \
     ui/colordialog.ui \

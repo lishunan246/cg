@@ -22,6 +22,9 @@
 #include "ui/lightdialog.h"
 #include "light.h"
 #include "xmlhelper.h"
+#include "vertice.h"
+#include "mtllib.h"
+#include "loadobj.h"
 
 class GLWidget : public QGLWidget
 {

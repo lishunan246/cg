@@ -215,11 +215,18 @@ void GLWidget::zoom_out()
 
 void GLWidget::load_obj()
 {
-    MainWindow::alert("1");
+
+    //MainWindow::alert("1");
+    QString filename=MainWindow::open_file("OBJ Files (*.obj)");
+    if(filename==NULL)
+        return;
+    LoadObjs* Myobjs = new LoadObjs(filename.toStdString());
+    //RenderObjs(Myobjs);
+    add_element(Myobjs);
 }
 
 void GLWidget::set_color()
-{ 
+{
     if(currentElement==NULL)
     {
        MainWindow::alert("No element selected");
@@ -544,6 +551,8 @@ void GLWidget::loadfile()
 
     from_xml(docElem);
 }
+
+
 
 
 
