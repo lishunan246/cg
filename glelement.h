@@ -7,6 +7,7 @@
 #include "xmlhelper.h"
 class GLElement
 {
+
 protected:
     static int counter;
     static int index;
